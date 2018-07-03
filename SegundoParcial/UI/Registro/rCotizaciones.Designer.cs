@@ -41,6 +41,7 @@
             this.DetalledataGridView = new System.Windows.Forms.DataGridView();
             this.TotalnumericUpDown = new System.Windows.Forms.NumericUpDown();
             this.MyerrorProvider = new System.Windows.Forms.ErrorProvider(this.components);
+            this.label3 = new System.Windows.Forms.Label();
             label5 = new System.Windows.Forms.Label();
             label4 = new System.Windows.Forms.Label();
             label2 = new System.Windows.Forms.Label();
@@ -56,7 +57,7 @@
             label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             label5.AutoSize = true;
             label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            label5.Location = new System.Drawing.Point(486, 45);
+            label5.Location = new System.Drawing.Point(486, 55);
             label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             label5.Name = "label5";
             label5.Size = new System.Drawing.Size(64, 16);
@@ -68,7 +69,7 @@
             label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             label4.AutoSize = true;
             label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            label4.Location = new System.Drawing.Point(364, 46);
+            label4.Location = new System.Drawing.Point(364, 56);
             label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             label4.Name = "label4";
             label4.Size = new System.Drawing.Size(57, 16);
@@ -80,7 +81,7 @@
             label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             label2.AutoSize = true;
             label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            label2.Location = new System.Drawing.Point(231, 48);
+            label2.Location = new System.Drawing.Point(231, 58);
             label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             label2.Name = "label2";
             label2.Size = new System.Drawing.Size(74, 16);
@@ -92,7 +93,7 @@
             label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             label1.AutoSize = true;
             label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            label1.Location = new System.Drawing.Point(112, 47);
+            label1.Location = new System.Drawing.Point(112, 57);
             label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             label1.Name = "label1";
             label1.Size = new System.Drawing.Size(64, 16);
@@ -113,14 +114,14 @@
             // 
             // ImportetextBox
             // 
-            this.ImportetextBox.Location = new System.Drawing.Point(469, 69);
+            this.ImportetextBox.Location = new System.Drawing.Point(469, 79);
             this.ImportetextBox.Name = "ImportetextBox";
             this.ImportetextBox.Size = new System.Drawing.Size(100, 20);
             this.ImportetextBox.TabIndex = 121;
             // 
             // PreciotextBox
             // 
-            this.PreciotextBox.Location = new System.Drawing.Point(341, 71);
+            this.PreciotextBox.Location = new System.Drawing.Point(341, 81);
             this.PreciotextBox.Name = "PreciotextBox";
             this.PreciotextBox.Size = new System.Drawing.Size(100, 20);
             this.PreciotextBox.TabIndex = 119;
@@ -128,14 +129,14 @@
             // ArticulocomboBox
             // 
             this.ArticulocomboBox.FormattingEnabled = true;
-            this.ArticulocomboBox.Location = new System.Drawing.Point(101, 72);
+            this.ArticulocomboBox.Location = new System.Drawing.Point(101, 82);
             this.ArticulocomboBox.Name = "ArticulocomboBox";
             this.ArticulocomboBox.Size = new System.Drawing.Size(100, 21);
             this.ArticulocomboBox.TabIndex = 116;
             // 
             // CantidadtextBox
             // 
-            this.CantidadtextBox.Location = new System.Drawing.Point(218, 73);
+            this.CantidadtextBox.Location = new System.Drawing.Point(218, 83);
             this.CantidadtextBox.Name = "CantidadtextBox";
             this.CantidadtextBox.Size = new System.Drawing.Size(99, 20);
             this.CantidadtextBox.TabIndex = 115;
@@ -149,7 +150,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.DetalledataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.DetalledataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.DetalledataGridView.Location = new System.Drawing.Point(24, 116);
+            this.DetalledataGridView.Location = new System.Drawing.Point(24, 124);
             this.DetalledataGridView.Margin = new System.Windows.Forms.Padding(2);
             this.DetalledataGridView.Name = "DetalledataGridView";
             this.DetalledataGridView.ReadOnly = true;
@@ -176,11 +177,22 @@
             // 
             this.MyerrorProvider.ContainerControl = this;
             // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(281, 12);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(112, 20);
+            this.label3.TabIndex = 131;
+            this.label3.Text = "Cotizaciones";
+            // 
             // rCotizaciones
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(716, 432);
+            this.Controls.Add(this.label3);
             this.Controls.Add(this.TotalnumericUpDown);
             this.Controls.Add(label7);
             this.Controls.Add(this.DetalledataGridView);
@@ -210,5 +222,6 @@
         private System.Windows.Forms.DataGridView DetalledataGridView;
         private System.Windows.Forms.NumericUpDown TotalnumericUpDown;
         private System.Windows.Forms.ErrorProvider MyerrorProvider;
+        private System.Windows.Forms.Label label3;
     }
 }

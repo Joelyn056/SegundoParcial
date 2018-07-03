@@ -60,54 +60,55 @@
             this.Buscarbutton.Text = "Buscar";
             this.Buscarbutton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.Buscarbutton.UseVisualStyleBackColor = true;
+            this.Buscarbutton.Click += new System.EventHandler(this.Buscarbutton_Click);
             // 
             // label5
             // 
             this.label5.AutoSize = true;
             this.label5.Location = new System.Drawing.Point(28, 183);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(93, 13);
+            this.label5.Size = new System.Drawing.Size(33, 13);
             this.label5.TabIndex = 39;
-            this.label5.Text = "Cantidad Cotizada";
+            this.label5.Text = "Taller";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(25, 144);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(112, 13);
+            this.label4.Size = new System.Drawing.Size(48, 13);
             this.label4.TabIndex = 38;
-            this.label4.Text = "Fecha de vencimiento";
+            this.label4.Text = "Vehiculo";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(25, 109);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(37, 13);
+            this.label3.Size = new System.Drawing.Size(116, 13);
             this.label3.TabIndex = 37;
-            this.label3.Text = "Precio";
+            this.label3.Text = "Proximo Mantenimiento";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(25, 74);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(63, 13);
+            this.label2.Size = new System.Drawing.Size(37, 13);
             this.label2.TabIndex = 36;
-            this.label2.Text = "Descripcion";
+            this.label2.Text = "Fecha";
             // 
             // CantCottextBox
             // 
-            this.CantCottextBox.Location = new System.Drawing.Point(145, 180);
+            this.CantCottextBox.Location = new System.Drawing.Point(105, 180);
             this.CantCottextBox.Name = "CantCottextBox";
-            this.CantCottextBox.Size = new System.Drawing.Size(189, 20);
+            this.CantCottextBox.Size = new System.Drawing.Size(229, 20);
             this.CantCottextBox.TabIndex = 45;
             // 
             // VencimientodateTimePicker
             // 
             this.VencimientodateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.VencimientodateTimePicker.Location = new System.Drawing.Point(145, 142);
+            this.VencimientodateTimePicker.Location = new System.Drawing.Point(105, 74);
             this.VencimientodateTimePicker.MinDate = new System.DateTime(2018, 5, 26, 0, 0, 0, 0);
             this.VencimientodateTimePicker.Name = "VencimientodateTimePicker";
             this.VencimientodateTimePicker.Size = new System.Drawing.Size(189, 20);
@@ -115,9 +116,9 @@
             // 
             // DescripciontextBox
             // 
-            this.DescripciontextBox.Location = new System.Drawing.Point(145, 74);
+            this.DescripciontextBox.Location = new System.Drawing.Point(105, 144);
             this.DescripciontextBox.Name = "DescripciontextBox";
-            this.DescripciontextBox.Size = new System.Drawing.Size(189, 20);
+            this.DescripciontextBox.Size = new System.Drawing.Size(227, 20);
             this.DescripciontextBox.TabIndex = 43;
             // 
             // PrecionumericUpDown
@@ -129,9 +130,9 @@
             // 
             // IdnumericUpDown
             // 
-            this.IdnumericUpDown.Location = new System.Drawing.Point(63, 30);
+            this.IdnumericUpDown.Location = new System.Drawing.Point(123, 30);
             this.IdnumericUpDown.Name = "IdnumericUpDown";
-            this.IdnumericUpDown.Size = new System.Drawing.Size(35, 20);
+            this.IdnumericUpDown.Size = new System.Drawing.Size(109, 20);
             this.IdnumericUpDown.TabIndex = 48;
             // 
             // label1
@@ -139,9 +140,9 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(30, 32);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(18, 13);
+            this.label1.Size = new System.Drawing.Size(87, 13);
             this.label1.TabIndex = 47;
-            this.label1.Text = "ID";
+            this.label1.Text = "MantenimientoID";
             // 
             // Eliminarbutton
             // 
@@ -153,6 +154,7 @@
             this.Eliminarbutton.Text = "Eliminar";
             this.Eliminarbutton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.Eliminarbutton.UseVisualStyleBackColor = true;
+            this.Eliminarbutton.Click += new System.EventHandler(this.Eliminarbutton_Click);
             // 
             // Nuevobutton
             // 
@@ -164,6 +166,7 @@
             this.Nuevobutton.Text = "Nuevo";
             this.Nuevobutton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.Nuevobutton.UseVisualStyleBackColor = true;
+            this.Nuevobutton.Click += new System.EventHandler(this.Nuevobutton_Click);
             // 
             // Guardarbutton
             // 
@@ -175,6 +178,7 @@
             this.Guardarbutton.Text = "Guardar";
             this.Guardarbutton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.Guardarbutton.UseVisualStyleBackColor = true;
+            this.Guardarbutton.Click += new System.EventHandler(this.Guardarbutton_Click);
             // 
             // GeneralErrorProvider
             // 

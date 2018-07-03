@@ -50,7 +50,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BLL\Repositorio.cs" />
+    <Compile Include="BLL\Vehiculos.cs" />
+    <Compile Include="BLL\VehiculosBLL.cs" />
     <Compile Include="DAL\Contexto.cs" />
+    <Compile Include="Entidades\Mantenimiento.cs" />
+    <Compile Include="Entidades\MantenimientoD.cs" />
+    <Compile Include="Entidades\Vehiculo.cs" />
     <Compile Include="Menu.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -71,12 +77,6 @@
     <Compile Include="UI\Registro\rCotizaciones.Designer.cs">
       <DependentUpon>rCotizaciones.cs</DependentUpon>
     </Compile>
-    <Compile Include="UI\Registro\rPersonas.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="UI\Registro\rPersonas.Designer.cs">
-      <DependentUpon>rPersonas.cs</DependentUpon>
-    </Compile>
     <EmbeddedResource Include="Menu.resx">
       <DependentUpon>Menu.cs</DependentUpon>
     </EmbeddedResource>
@@ -96,9 +96,6 @@
     <EmbeddedResource Include="UI\Registro\rCotizaciones.resx">
       <DependentUpon>rCotizaciones.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UI\Registro\rPersonas.resx">
-      <DependentUpon>rPersonas.cs</DependentUpon>
-    </EmbeddedResource>
     <None Include="App.config" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -112,17 +109,17 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="BLL\" />
-    <Folder Include="Entidades\" />
     <Folder Include="Scripts\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="DAL\Scripts\SQLQuery2.sql" />
     <None Include="Resources\Save.png" />
     <None Include="Resources\new2.png" />
     <None Include="Resources\imprimir.png" />
     <None Include="Resources\find.png" />
     <None Include="Resources\Delete.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="DAL\Scripts\SQLQuery2.sql" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
