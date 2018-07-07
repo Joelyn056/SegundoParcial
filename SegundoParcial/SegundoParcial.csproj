@@ -50,13 +50,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BLL\Repositorio.cs" />
-    <Compile Include="BLL\Vehiculos.cs" />
+    <Compile Include="BLL\ArticulosBLL.cs" />
+    <Compile Include="BLL\MantenimientoBLL.cs" />
+    <Compile Include="BLL\rEntradaArtBLL.cs" />
+    <Compile Include="BLL\TalleresBLL.cs" />
     <Compile Include="BLL\VehiculosBLL.cs" />
     <Compile Include="DAL\Contexto.cs" />
+    <Compile Include="DAL\IRepository.cs" />
+    <Compile Include="DAL\Repositorio.cs" />
+    <Compile Include="Entidades\Articulos.cs" />
     <Compile Include="Entidades\Mantenimiento.cs" />
     <Compile Include="Entidades\MantenimientoD.cs" />
-    <Compile Include="Entidades\Vehiculo.cs" />
+    <Compile Include="Entidades\rEntradaArt.cs" />
+    <Compile Include="Entidades\Talleres.cs" />
+    <Compile Include="Entidades\Vehiculos.cs" />
     <Compile Include="Menu.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -71,11 +78,29 @@
     <Compile Include="UI\Registro\rArticulos.Designer.cs">
       <DependentUpon>rArticulos.cs</DependentUpon>
     </Compile>
-    <Compile Include="UI\Registro\rCotizaciones.cs">
+    <Compile Include="UI\Registro\rEntradaArticulo.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="UI\Registro\rCotizaciones.Designer.cs">
-      <DependentUpon>rCotizaciones.cs</DependentUpon>
+    <Compile Include="UI\Registro\rEntradaArticulo.Designer.cs">
+      <DependentUpon>rEntradaArticulo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Registro\rTalleres.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Registro\rTalleres.Designer.cs">
+      <DependentUpon>rTalleres.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Registro\rVehiculos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Registro\rVehiculos.Designer.cs">
+      <DependentUpon>rVehiculos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Registro\rMantenimiento.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Registro\rMantenimiento.Designer.cs">
+      <DependentUpon>rMantenimiento.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="Menu.resx">
       <DependentUpon>Menu.cs</DependentUpon>
@@ -93,8 +118,17 @@
     <EmbeddedResource Include="UI\Registro\rArticulos.resx">
       <DependentUpon>rArticulos.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UI\Registro\rCotizaciones.resx">
-      <DependentUpon>rCotizaciones.cs</DependentUpon>
+    <EmbeddedResource Include="UI\Registro\rEntradaArticulo.resx">
+      <DependentUpon>rEntradaArticulo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Registro\rTalleres.resx">
+      <DependentUpon>rTalleres.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Registro\rVehiculos.resx">
+      <DependentUpon>rVehiculos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Registro\rMantenimiento.resx">
+      <DependentUpon>rMantenimiento.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="App.config" />
     <None Include="packages.config" />
@@ -109,7 +143,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Scripts\" />
+    <Content Include="DAL\Scripts\SQLQuery2.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Save.png" />
@@ -117,9 +151,6 @@
     <None Include="Resources\imprimir.png" />
     <None Include="Resources\find.png" />
     <None Include="Resources\Delete.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="DAL\Scripts\SQLQuery2.sql" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

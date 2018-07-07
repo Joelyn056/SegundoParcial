@@ -17,62 +17,60 @@ namespace SegundoParcial.UI.Registro
             InitializeComponent();
         }
 
-        private void Buscarbutton_Click(object sender, EventArgs e)
+        private void BuscarButton_Click(object sender, EventArgs e)
         {
+            //GeneralErrorProvider.Clear();
 
-            GeneralErrorProvider.Clear();
+            //if (Validar(1))
+            //{
+            //    MessageBox.Show("Ingrese el ID");
+            //    return;
+            //}
 
-            if (Validar(1))
+            int id = Convert.ToInt32(ArticuloIDNumericUpDown.Value);
+            Articulos articulos = BLL.ArticulosBLL.Buscar(id);
+
+            if (articulos != null)
             {
-                MessageBox.Show("Ingrese un ID");
-                return;
-            }
-
-            int id = Convert.ToInt32(IdnumericUpDown.Value);
-            Vehiculos vehiculos = BLL.VehiculosBLL.Buscar(id);
-
-            if (vehiculos != null)
-            {
-
-                DescripciontextBox.Text = vehiculos.Descripcion;
-                PrecionumericUpDown.Value = vehiculos.Precio;
-                VencimientodateTimePicker.Text = vehiculos.FechaVencimiento.ToString();
-                CantCottextBox.Text = vehiculos.CantidadCotizada.ToString();
-
+                ArticuloIDNumericUpDown.Value = articulos.ArticuloId;
+                DescripcionTextBox.Text = articulos.Descripcion;
+                CostoNumericUpDown.Value = articulos.Costo;
+                PrecioNumericUpDown.Value = articulos.Precio;
+                GananciaNumericUpDown.Value = articulos.Ganancia;
+                InventarioNumericUpDown.Value = articulos.Inventario;
             }
             else
-                MessageBox.Show("No se encontro", "Fallo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("no se encontro", "Fallo", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
         private void Nuevobutton_Click(object sender, EventArgs e)
         {
-            IdnumericUpDown.Value = 0;
-            DescripciontextBox.Clear();
-            PrecionumericUpDown.Value = 0;
-            CantCottextBox.Clear();
+            ArticuloIDNumericUpDown.Value = 0;
+            DescripcionTextBox.Clear();
+            CostoNumericUpDown.Value = 0;
+            PrecioNumericUpDown.Value = 0;
+            GananciaNumericUpDown.Value = 0;
+            InventarioNumericUpDown.Value = 0;
         }
 
         private void Guardarbutton_Click(object sender, EventArgs e)
         {
             bool paso = false;
-            if (Validar(2))
+            Articulos articulos = new Articulos();
+            if (Validar())
             {
-
                 MessageBox.Show("Llenar todos los campos marcados");
                 return;
             }
-
             GeneralErrorProvider.Clear();
+            articulos = LlenarClase();
 
-            
-            if (IdnumericUpDown.Value == 0)
-                paso = BLL.VehiculosBLL.Guardar(LlenarClase());
+            if (ArticuloIDNumericUpDown.Value == 0)
+                paso = BLL.ArticulosBLL.Guardar(articulos);
             else
-                paso = BLL.VehiculosBLL.Modificar(LlenarClase());
+                paso = BLL.ArticulosBLL.Modificar(articulos);
 
-            
             if (paso)
-
                 MessageBox.Show("Guardado", "Exito", MessageBoxButtons.OK, MessageBoxIcon.Information);
             else
                 MessageBox.Show("No se pudo guardar", "Fallo", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -80,62 +78,66 @@ namespace SegundoParcial.UI.Registro
 
         private void Eliminarbutton_Click(object sender, EventArgs e)
         {
+            //GeneralErrorProvider.Clear();
 
-            GeneralErrorProvider.Clear();
+            //if (Validar())
+            //{
+            //    MessageBox.Show("Ingrese un ID");
+            //    return;
+            //}
 
-            if (Validar(1))
-            {
-                MessageBox.Show("Ingrese un ID");
-                return;
-            }
+            int id = Convert.ToInt32(ArticuloIDNumericUpDown.Value);
 
-            int id = Convert.ToInt32(IdnumericUpDown.Value);
-
-            if (BLL.VehiculosBLL.Eliminar(id))
+            if (BLL.ArticulosBLL.Eliminar(id))
                 MessageBox.Show("Eliminado", "Exito", MessageBoxButtons.OK, MessageBoxIcon.Information);
             else
-                MessageBox.Show("No se pudo eliminar", "Fallo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("no se pudo guardar", "Fallo", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
-
-        private vehiculos LlenarClase()
+        private Articulos LlenarClase()
         {
+            Articulos articulos = new Articulos();
 
-            vehiculos = new vehiculos();
+            articulos.ArticuloId = Convert.ToInt32(ArticuloIDNumericUpDown.Value);
+            articulos.Descripcion = DescripcionTextBox.Text;
+            articulos.Costo = Convert.ToInt32(CostoNumericUpDown.Value);
+            articulos.Precio = Convert.ToInt32(PrecioNumericUpDown.Value);
+            articulos.Ganancia = Convert.ToInt32(GananciaNumericUpDown.Value);
+            articulos.Inventario = Convert.ToInt32(InventarioNumericUpDown.Value);
 
+            return articulos;
+        }
+
+        private bool Validar()
+        {
+            bool Validar = false;
             
-        }
-
-        private bool Validar(int validar)
-        {
-
-            bool paso = false;
-            if (validar == 1 && IdnumericUpDown.Value == 0)
+            if (string.IsNullOrWhiteSpace(DescripcionTextBox.Text))
             {
-                GeneralErrorProvider.SetError(IdnumericUpDown, "el mantenimiento ID");
-                paso = true;
+                GeneralErrorProvider.SetError(DescripcionTextBox, "Ingrese una descripcion");
+                Validar = true;
+            }
 
-            }
-            if (validar == 2 && DescripciontextBox.Text == string.Empty)
-            {
-                GeneralErrorProvider.SetError(DescripciontextBox, "Ingrese una descripcion");
-                paso = true;
-            }
-            if (validar == 2 && PrecionumericUpDown.Value == 0)
+            if (CostoNumericUpDown.Value == 0)
             {
 
-                GeneralErrorProvider.SetError(PrecionumericUpDown, "Ingrese el proximo mantenimiento");
-                paso = true;
+                GeneralErrorProvider.SetError(CostoNumericUpDown, "Ingrese el Costo");
+                Validar = true;
             }
-            if (validar == 2 && CantCottextBox.Text == string.Empty)
+            if(PrecioNumericUpDown.Value == 0)
             {
-
-                GeneralErrorProvider.SetError(CantCottextBox, "Ingrese el tipo de vehiculo");
-
+                GeneralErrorProvider.SetError(PrecioNumericUpDown, "Ingrese el precio");
+                Validar = true;
             }
-            return paso;
+            if (GananciaNumericUpDown.Value == 0)
+            {
+                GeneralErrorProvider.SetError(GananciaNumericUpDown, "Ganancia ");
+                Validar = true;
+            }
+           
+
+            return Validar;
 
         }
-
     }
 }

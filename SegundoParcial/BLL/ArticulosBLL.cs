@@ -2,87 +2,74 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using SegundoParcial.DAL;
 using SegundoParcial.Entidades;
+using SegundoParcial.DAL;
+using System.Data.Entity;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
-using System.Data.Entity;
 
 namespace SegundoParcial.BLL
 {
-    public class VehiculosBLL
+    public class ArticulosBLL
     {
-        public static bool Guardar(Vehiculos vehiculos)
+        public static bool Guardar(Articulos articulos)
         {
             bool paso = false;
-
             Contexto contexto = new Contexto();
             try
             {
-                if (contexto.Vehiculo.Add(vehiculos) != null)
+                if(contexto.Articulos.Add(articulos) != null)
                 {
                     contexto.SaveChanges();
                     paso = true;
                 }
-
                 contexto.Dispose();
             }
-            catch (Exception)
+             catch(Exception)
             {
                 throw;
             }
+
             return paso;
         }
 
-        public static bool Modificar(Vehiculos vehiculos)
+        public static bool Modificar(Articulos articulos)
         {
-
-            bool paso = false;
-
+            bool paso = true;
             Contexto contexto = new Contexto();
-
             try
             {
-                contexto.Entry(vehiculos).State = EntityState.Modified;
-                if (contexto.SaveChanges() > 0)
+                contexto.Entry(articulos).State = EntityState.Modified;
+                if(contexto.SaveChanges() > 0)
                 {
                     paso = true;
                 }
-
                 contexto.Dispose();
-
             }
-
-            catch (Exception)
+            catch(Exception)
             {
                 throw;
             }
-
             return paso;
         }
 
         public static bool Eliminar(int id)
         {
-
             bool paso = false;
-
             Contexto contexto = new Contexto();
-
             try
             {
+                Articulos articulos = contexto.Articulos.Find(id);
 
-                Vehiculos vehiculos = contexto.Vehiculo.Find(id);
-
-                contexto.Vehiculo.Remove(vehiculos);
-                if (contexto.SaveChanges() > 0)
+                contexto.Articulos.Remove(articulos);
+                if(contexto.SaveChanges() > 0)
                 {
                     paso = true;
                 }
-
                 contexto.Dispose();
             }
 
-            catch (Exception)
+            catch(Exception)
             {
                 throw;
             }
@@ -90,36 +77,33 @@ namespace SegundoParcial.BLL
             return paso;
         }
 
-        public static Vehiculos Buscar(int id)
+        public static Articulos Buscar(int id)
         {
-
-            Vehiculos vehiculos = new Vehiculos();
+            Articulos articulos = new Articulos();
             Contexto contexto = new Contexto();
-
             try
             {
-                vehiculos = contexto.Vehiculo.Find(id);
+                articulos = contexto.Articulos.Find(id);
                 contexto.Dispose();
-
             }
 
-            catch (Exception)
+            catch(Exception)
             {
                 throw;
             }
 
-            return vehiculos;
+            return articulos;
         }
 
-        public static List<Vehiculos> GetList(Expression<Func<Vehiculos, bool>> expression)
+        public static List<Articulos> GetList(Expression<Func<Articulos, bool>> expression)
         {
 
-            List<Vehiculos> vehiculo = new List<Vehiculos>();
+            List<Articulos> articulos = new List<Articulos>();
             Contexto contexto = new Contexto();
 
             try
             {
-                vehiculo = contexto.Vehiculo.Where(expression).ToList();
+                articulos = contexto.Articulos.Where(expression).ToList();
                 contexto.Dispose();
             }
             catch (Exception)
@@ -127,8 +111,7 @@ namespace SegundoParcial.BLL
                 throw;
             }
 
-            return vehiculo;
+            return articulos;
         }
     }
 }
-

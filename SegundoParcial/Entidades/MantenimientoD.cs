@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Threading.Tasks;
+
 
 namespace SegundoParcial.Entidades
 {
@@ -14,31 +16,29 @@ namespace SegundoParcial.Entidades
         public int Id { get; set; }
         public int MantenimientoId { get; set; }
         public int VehiculoId { get; set; }
-        public int Cantidad { get; set; }
-        public int Precio { get; set; }
-        public int Importe { get; set; }
-
-        [ForeignKey("MantenimientoId")]
-        public virtual Mantenimiento Mantenimiento { get; set; }
+        public DateTime Fecha { get; set; }
+        public int ProxiMantenimiento { get; set; }
+        public string Vehiculo { get; set; }
+        public int Taller { get; set; }
 
         [ForeignKey("VehiculoId")]
         public virtual Vehiculos Vehiculos { get; set; }
 
 
-        public Mantenimiento_Detalle()
+        public MantenimientoD()
         {
             Id = 0;
-
+            MantenimientoId = 0;
         }
 
-        public Mantenimiento_Detalle(int id, int mantenimientoId, int vehiculoId, int cantidad, int precio, int importe)
+        public MantenimientoD(int id, int mantenimientoId, string vehiculo, int proxiMantenimiento, int taller)
         {
             Id = id;
             MantenimientoId = mantenimientoId;
-            VehiculoId = vehiculoId;
-            Cantidad = cantidad;
-            Precio = precio;
-            Importe = importe;
+            Vehiculo = vehiculo;
+            ProxiMantenimiento = proxiMantenimiento;
+            Taller = taller;
+        
         }
     }
 }

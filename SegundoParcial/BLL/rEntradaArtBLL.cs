@@ -5,21 +5,19 @@ using System.Text;
 using SegundoParcial.DAL;
 using SegundoParcial.Entidades;
 using System.Linq.Expressions;
-using System.Threading.Tasks;
 using System.Data.Entity;
 
 namespace SegundoParcial.BLL
 {
-    public class VehiculosBLL
+    public class rEntradaArtBLL
     {
-        public static bool Guardar(Vehiculos vehiculos)
+        public static bool Guardar(rEntradaArt rEntradaArt)
         {
             bool paso = false;
-
             Contexto contexto = new Contexto();
             try
             {
-                if (contexto.Vehiculo.Add(vehiculos) != null)
+                if(contexto.rEntradaArts.Add(rEntradaArt) != null)
                 {
                     contexto.SaveChanges();
                     paso = true;
@@ -34,17 +32,14 @@ namespace SegundoParcial.BLL
             return paso;
         }
 
-        public static bool Modificar(Vehiculos vehiculos)
+        public static bool Modificar(rEntradaArt rEntradaArt)
         {
-
             bool paso = false;
-
             Contexto contexto = new Contexto();
-
             try
             {
-                contexto.Entry(vehiculos).State = EntityState.Modified;
-                if (contexto.SaveChanges() > 0)
+                contexto.Entry(rEntradaArt).State = EntityState.Modified;
+                if(contexto.SaveChanges() > 0)
                 {
                     paso = true;
                 }
@@ -52,74 +47,60 @@ namespace SegundoParcial.BLL
                 contexto.Dispose();
 
             }
-
-            catch (Exception)
+            catch(Exception)
             {
                 throw;
             }
-
             return paso;
         }
 
         public static bool Eliminar(int id)
         {
-
-            bool paso = false;
-
+            bool paso = true;
             Contexto contexto = new Contexto();
-
             try
             {
+                rEntradaArt rEntradaArt = contexto.rEntradaArts.Find(id);
 
-                Vehiculos vehiculos = contexto.Vehiculo.Find(id);
-
-                contexto.Vehiculo.Remove(vehiculos);
-                if (contexto.SaveChanges() > 0)
+                contexto.rEntradaArts.Remove(rEntradaArt);
+                if(contexto.SaveChanges() > 0)
                 {
                     paso = true;
                 }
 
                 contexto.Dispose();
             }
-
-            catch (Exception)
+            catch(Exception)
             {
                 throw;
             }
-
             return paso;
         }
 
-        public static Vehiculos Buscar(int id)
+        public static rEntradaArt Buscar(int id)
         {
-
-            Vehiculos vehiculos = new Vehiculos();
+            rEntradaArt rEntradaArt = new rEntradaArt();
             Contexto contexto = new Contexto();
-
             try
             {
-                vehiculos = contexto.Vehiculo.Find(id);
+                rEntradaArt = contexto.rEntradaArts.Find(id);
                 contexto.Dispose();
-
             }
-
-            catch (Exception)
+            catch(Exception)
             {
                 throw;
             }
-
-            return vehiculos;
+            return rEntradaArt;
         }
 
-        public static List<Vehiculos> GetList(Expression<Func<Vehiculos, bool>> expression)
+        public static List<rEntradaArt> GetList(Expression<Func<rEntradaArt, bool>> expression)
         {
-
-            List<Vehiculos> vehiculo = new List<Vehiculos>();
+            List<rEntradaArt> rEntradaArt = new List<rEntradaArt>();
             Contexto contexto = new Contexto();
 
             try
             {
-                vehiculo = contexto.Vehiculo.Where(expression).ToList();
+                rEntradaArt = contexto.rEntradaArts.Where(expression).ToList();
                 contexto.Dispose();
             }
             catch (Exception)
@@ -127,8 +108,7 @@ namespace SegundoParcial.BLL
                 throw;
             }
 
-            return vehiculo;
+            return rEntradaArt;
         }
     }
 }
-

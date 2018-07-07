@@ -2,24 +2,24 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using SegundoParcial.DAL;
 using SegundoParcial.Entidades;
-using System.Linq.Expressions;
-using System.Threading.Tasks;
 using System.Data.Entity;
+using System.Linq.Expressions;
 
 namespace SegundoParcial.BLL
 {
-    public class VehiculosBLL
+    public class TalleresBLL
     {
-        public static bool Guardar(Vehiculos vehiculos)
+        public static bool Guardar(Talleres talleres)
         {
             bool paso = false;
 
             Contexto contexto = new Contexto();
             try
             {
-                if (contexto.Vehiculo.Add(vehiculos) != null)
+                if(contexto.Talleres.Add(talleres) != null)
                 {
                     contexto.SaveChanges();
                     paso = true;
@@ -27,33 +27,29 @@ namespace SegundoParcial.BLL
 
                 contexto.Dispose();
             }
-            catch (Exception)
+            catch(Exception)
             {
                 throw;
             }
             return paso;
         }
 
-        public static bool Modificar(Vehiculos vehiculos)
+        public static bool Modificar(Talleres talleres)
         {
-
             bool paso = false;
 
             Contexto contexto = new Contexto();
-
             try
             {
-                contexto.Entry(vehiculos).State = EntityState.Modified;
-                if (contexto.SaveChanges() > 0)
+                contexto.Entry(talleres).State = EntityState.Modified;
+                if(contexto.SaveChanges() > 0)
                 {
                     paso = true;
                 }
 
                 contexto.Dispose();
-
             }
-
-            catch (Exception)
+            catch(Exception)
             {
                 throw;
             }
@@ -63,18 +59,15 @@ namespace SegundoParcial.BLL
 
         public static bool Eliminar(int id)
         {
-
             bool paso = false;
 
             Contexto contexto = new Contexto();
-
             try
             {
+                Talleres talleres = contexto.Talleres.Find(id);
 
-                Vehiculos vehiculos = contexto.Vehiculo.Find(id);
-
-                contexto.Vehiculo.Remove(vehiculos);
-                if (contexto.SaveChanges() > 0)
+                contexto.Talleres.Remove(talleres);
+                if(contexto.SaveChanges()> 0)
                 {
                     paso = true;
                 }
@@ -82,53 +75,49 @@ namespace SegundoParcial.BLL
                 contexto.Dispose();
             }
 
-            catch (Exception)
+            catch(Exception)
             {
                 throw;
             }
 
             return paso;
+                
         }
 
-        public static Vehiculos Buscar(int id)
+        public static Talleres Buscar(int id)
         {
-
-            Vehiculos vehiculos = new Vehiculos();
+            Talleres talleres = new Talleres();
             Contexto contexto = new Contexto();
 
             try
             {
-                vehiculos = contexto.Vehiculo.Find(id);
+                talleres = contexto.Talleres.Find(id);
                 contexto.Dispose();
-
             }
-
-            catch (Exception)
+            catch(Exception)
             {
                 throw;
             }
 
-            return vehiculos;
+            return talleres;
         }
 
-        public static List<Vehiculos> GetList(Expression<Func<Vehiculos, bool>> expression)
+        public static List<Talleres> GetList(Expression<Func<Talleres,bool >> expression)
         {
-
-            List<Vehiculos> vehiculo = new List<Vehiculos>();
+            List<Talleres> talleres = new List<Talleres>();
             Contexto contexto = new Contexto();
 
             try
             {
-                vehiculo = contexto.Vehiculo.Where(expression).ToList();
+                talleres = contexto.Talleres.Where(expression).ToList();
                 contexto.Dispose();
             }
-            catch (Exception)
+            catch(Exception)
             {
                 throw;
             }
 
-            return vehiculo;
+            return talleres;
         }
     }
 }
-
