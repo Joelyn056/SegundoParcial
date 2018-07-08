@@ -15,10 +15,17 @@ namespace SegundoParcial.BLL
         {
             bool paso = false;
             Contexto contexto = new Contexto();
+            Repositorio<Articulos> articulo = new Repositorio<Articulos>(new Contexto());//
+
             try
             {
                 if(contexto.rEntradaArts.Add(rEntradaArt) != null)
                 {
+
+                    //foreach(var item in articulo.GetList(x => x.Descripcion == rEntradaArt.Articulo)
+                    //{
+                    //    contexto.Articulos.Find(item.ArticuloId).Inventario += rEntradaArt.Cantidad
+                    //}
                     contexto.SaveChanges();
                     paso = true;
                 }

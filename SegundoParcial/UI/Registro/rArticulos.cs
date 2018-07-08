@@ -40,7 +40,10 @@ namespace SegundoParcial.UI.Registro
                 InventarioNumericUpDown.Value = articulos.Inventario;
             }
             else
+            {
                 MessageBox.Show("no se encontro", "Fallo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            GeneralErrorProvider.Clear();
         }
 
         private void Nuevobutton_Click(object sender, EventArgs e)
@@ -63,6 +66,7 @@ namespace SegundoParcial.UI.Registro
                 return;
             }
             GeneralErrorProvider.Clear();
+
             articulos = LlenarClase();
 
             if (ArticuloIDNumericUpDown.Value == 0)
@@ -114,29 +118,11 @@ namespace SegundoParcial.UI.Registro
             
             if (string.IsNullOrWhiteSpace(DescripcionTextBox.Text))
             {
-                GeneralErrorProvider.SetError(DescripcionTextBox, "Ingrese una descripcion");
-                Validar = true;
-            }
-
-            if (CostoNumericUpDown.Value == 0)
-            {
-
-                GeneralErrorProvider.SetError(CostoNumericUpDown, "Ingrese el Costo");
-                Validar = true;
-            }
-            if(PrecioNumericUpDown.Value == 0)
-            {
-                GeneralErrorProvider.SetError(PrecioNumericUpDown, "Ingrese el precio");
-                Validar = true;
-            }
-            if (GananciaNumericUpDown.Value == 0)
-            {
-                GeneralErrorProvider.SetError(GananciaNumericUpDown, "Ganancia ");
+                GeneralErrorProvider.SetError(DescripcionTextBox, "Debes llenar la descripcion");
                 Validar = true;
             }
            
-
-            return Validar;
+           return Validar;
 
         }
     }

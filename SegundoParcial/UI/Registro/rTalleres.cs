@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using SegundoParcial.Entidades;
+using SegundoParcial.DAL;
 
 namespace SegundoParcial.UI.Registro
 {
@@ -14,7 +15,7 @@ namespace SegundoParcial.UI.Registro
     {
         public rTalleres()
         {
-            InitializeComponent();
+            InitializeComponent();            
         }
 
         private void BuscarButton_Click(object sender, EventArgs e)
@@ -44,11 +45,14 @@ namespace SegundoParcial.UI.Registro
         {
             TallerIDNumericUpDown.Value = 0;
             NombreTextBox.Clear();
+            GeneralErrorProvider.Clear();
         }
 
         private void Guardarbutton_Click(object sender, EventArgs e)
         {
+            
             bool paso = false;
+            Talleres talleres = new Talleres();
             if(Validar(2))
             {
                 MessageBox.Show("llenar los campo Marcados");
@@ -97,20 +101,14 @@ namespace SegundoParcial.UI.Registro
         private bool Validar(int validar)
         {
 
-            bool paso = false;
-            if (validar == 1 && TallerIDNumericUpDown.Value == 0)
+            bool Validar = false;          
+            if (string.IsNullOrWhiteSpace(NombreTextBox.Text))
             {
-                GeneralErrorProvider.SetError(TallerIDNumericUpDown, "el Vehiculo ID");
-                paso = true;
-
-            }
-            if (validar == 2 && NombreTextBox.Text == string.Empty)
-            {
-                GeneralErrorProvider.SetError(NombreTextBox, "Ingrese una nombre");
-                paso = true;
+                GeneralErrorProvider.SetError(NombreTextBox, "Favor Ingrese el nombre");
+                Validar = true;
             }
 
-            return paso;
+            return Validar;
         }
     }
 }

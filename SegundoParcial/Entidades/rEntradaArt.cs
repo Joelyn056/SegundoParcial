@@ -21,5 +21,6 @@ namespace SegundoParcial.Entidades
             Articulo = 0;
             Cantidad = 0;
         }
+
     }
 }

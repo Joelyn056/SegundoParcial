@@ -17,6 +17,7 @@ namespace SegundoParcial.DAL
         public DbSet<Articulos> Articulos { get; set; }
         public DbSet<rEntradaArt> rEntradaArts { get; set; }
 
+        public DbSet<MantenimientoD> mantenimientos { get; set; }//
         public Contexto() : base("ConStr")
         {
 

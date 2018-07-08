@@ -403,6 +403,7 @@
             this.AgregarButton.Text = "Agregar";
             this.AgregarButton.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.AgregarButton.UseVisualStyleBackColor = true;
+            this.AgregarButton.Click += new System.EventHandler(this.AgregarButton_Click);
             // 
             // GeneralErrorProvider
             // 

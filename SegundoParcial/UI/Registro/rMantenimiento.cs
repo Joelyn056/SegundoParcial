@@ -7,11 +7,19 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using SegundoParcial.Entidades;
+using SegundoParcial.BLL;
+using SegundoParcial.DAL;
+using System.Threading.Tasks;
 
 namespace SegundoParcial.UI.Registro
 {
     public partial class rMantenimiento : Form
     {
+        decimal ITBIS = 0;
+        decimal Importe = 0;
+        decimal Total = 0;
+        decimal SubTotal = 0;
+
         public rMantenimiento()
         {
             InitializeComponent();
@@ -121,6 +129,18 @@ namespace SegundoParcial.UI.Registro
             }
 
             return paso;
+        }
+
+        
+        private void AgregarButton_Click(object sender, EventArgs e)
+        {
+            List<MantenimientoD> mantenimientos = new List<MantenimientoD>();
+
+            if(DetalledataGridView.DataSource != null)
+            {
+                mantenimientos = (List<MantenimientoD>)DetalledataGridView.DataSource;
+            }
+
         }
     }
 }

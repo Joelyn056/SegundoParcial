@@ -33,11 +33,11 @@ namespace SegundoParcial.UI.Registro
         {
             GeneralErrorProvider.Clear();
 
-            if (Validar(1))
-            {
-                MessageBox.Show("Ingrese el ID");
-                return;
-            }
+            //if (Validar(1))
+            //{
+            //    MessageBox.Show("Ingrese el ID");
+            //    return;
+            //}
 
             int id = Convert.ToInt32(EntradaIDNumericUpDown.Value);
             rEntradaArt rEntradaArt = BLL.rEntradaArtBLL.Buscar(id);
@@ -56,18 +56,19 @@ namespace SegundoParcial.UI.Registro
         private void Nuevobutton_Click(object sender, EventArgs e)
         {
             EntradaIDNumericUpDown.Value = 0;
-            //ArticuloComboBox.Text;
+            FechaDateTimePicker1.ResetText();
+            GeneralErrorProvider.Clear();
             CantidadNumericUpDown2.Value = 0;
         }
 
         private void Guardarbutton_Click(object sender, EventArgs e)
         {
             bool paso = false;
-            if(Validar(2))
-            {
-                MessageBox.Show("llenar todos los compos marcados");
-                return;
-            }
+            //if(Validar(2))
+            //{
+            //    MessageBox.Show("llenar todos los compos marcados");
+            //    return;
+            //}
 
             GeneralErrorProvider.Clear();
 
@@ -86,11 +87,11 @@ namespace SegundoParcial.UI.Registro
         {
             GeneralErrorProvider.Clear();
 
-            if(Validar(2))
-            {
-                MessageBox.Show("Ingrese el Id");
-                return;
-            }
+            //if(Validar(2))
+            //{
+            //    MessageBox.Show("Ingrese el Id");
+            //    return;
+            //}
 
             int id = Convert.ToInt32(EntradaIDNumericUpDown.Value);
 
@@ -106,34 +107,22 @@ namespace SegundoParcial.UI.Registro
 
             rEntradaArt.EntradaId = Convert.ToInt32(EntradaIDNumericUpDown.Value);
             rEntradaArt.Articulo = Convert.ToInt32(ArticuloComboBox.Text);
+            rEntradaArt.Fecha = FechaDateTimePicker1.Value.Date;           
             rEntradaArt.Cantidad = Convert.ToInt32(CantidadNumericUpDown2.Value);
 
             return rEntradaArt;
         }
 
-        private bool Validar(int validar)
+        private bool Validar()
         {
-            bool paso = false;
-
-            if (validar == 1 && EntradaIDNumericUpDown.Value == 0)
+            bool Validar = false;
+            if (CantidadNumericUpDown2.Value == 0)
             {
-                GeneralErrorProvider.SetError(EntradaIDNumericUpDown, "el Entrada ID");
-                paso = true;
-
-            }
-            if (validar == 2 && ArticuloComboBox.Text == string.Empty)
-            {
-                GeneralErrorProvider.SetError(ArticuloComboBox, "Articulo");
-                paso = true;
-            }
-            if (validar == 2 && CantidadNumericUpDown2.Value == 0)
-            {
-
-                GeneralErrorProvider.SetError(CantidadNumericUpDown2, "Cantidad");
-                paso = true;
+                GeneralErrorProvider.SetError(CantidadNumericUpDown2, "Digite la Cantidad de entradas");
+                Validar = true;
             }
             
-            return paso;
+            return Validar;
 
         }
 
