@@ -143,14 +143,14 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="DAL\Scripts\SQLQuery2.sql" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\Save.png" />
     <None Include="Resources\new2.png" />
     <None Include="Resources\imprimir.png" />
     <None Include="Resources\find.png" />
     <None Include="Resources\Delete.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="DAL\Scripts\SQLQuery2.sql" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -20,6 +20,14 @@ namespace SegundoParcial.Entidades
         public int ProxiMantenimiento { get; set; }
         public string Vehiculo { get; set; }
         public int Taller { get; set; }
+        public decimal Precio { get; set; }
+        public decimal Importe { get; set; }
+        public int ArticuloId { get; set; }
+        public int Cantidad { get; set; }
+        public int TallerId { get; set; }
+        public int Total { get; set; }
+
+
 
         [ForeignKey("VehiculoId")]
         public virtual Vehiculos Vehiculos { get; set; }
@@ -39,6 +47,19 @@ namespace SegundoParcial.Entidades
             ProxiMantenimiento = proxiMantenimiento;
             Taller = taller;
         
+        }
+
+        public MantenimientoD(int id, int mantenimientoId, int vehiculoId, decimal precio, decimal importe, int articuloId, int cantidad, int tallerId, int total)
+        {
+            Id = id;
+            MantenimientoId = mantenimientoId;
+            VehiculoId = vehiculoId;
+            Precio = precio;
+            Importe = importe;
+            ArticuloId = articuloId;
+            Cantidad = cantidad;
+            TallerId = tallerId;
+            Total = total;
         }
     }
 }

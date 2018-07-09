@@ -11,14 +11,14 @@ namespace SegundoParcial.Entidades
         [Key]
         public int EntradaId { get; set; }
         public DateTime Fecha { get; set; }
-        public int Articulo { get; set; }
+        public string Articulo { get; set; }
         public int Cantidad { get; set; }
 
         public rEntradaArt()
         {
             EntradaId = 0;
             Fecha = Fecha;
-            Articulo = 0;
+            Articulo = string.Empty;
             Cantidad = 0;
         }
 

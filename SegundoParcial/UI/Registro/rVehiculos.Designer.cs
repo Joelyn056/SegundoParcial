@@ -138,6 +138,7 @@
             // 
             // TotalManTeNumericUpDown2
             // 
+            this.TotalManTeNumericUpDown2.Enabled = false;
             this.TotalManTeNumericUpDown2.Location = new System.Drawing.Point(139, 167);
             this.TotalManTeNumericUpDown2.Name = "TotalManTeNumericUpDown2";
             this.TotalManTeNumericUpDown2.Size = new System.Drawing.Size(120, 20);

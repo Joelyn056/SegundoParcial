@@ -57,9 +57,15 @@
             // PrecioNumericUpDown
             // 
             this.PrecioNumericUpDown.Location = new System.Drawing.Point(96, 195);
+            this.PrecioNumericUpDown.Maximum = new decimal(new int[] {
+            100000,
+            0,
+            0,
+            0});
             this.PrecioNumericUpDown.Name = "PrecioNumericUpDown";
             this.PrecioNumericUpDown.Size = new System.Drawing.Size(120, 20);
             this.PrecioNumericUpDown.TabIndex = 77;
+            this.PrecioNumericUpDown.ValueChanged += new System.EventHandler(this.PrecioNumericUpDown_ValueChanged);
             // 
             // label3
             // 
@@ -164,6 +170,11 @@
             // CostoNumericUpDown
             // 
             this.CostoNumericUpDown.Location = new System.Drawing.Point(91, 155);
+            this.CostoNumericUpDown.Maximum = new decimal(new int[] {
+            1000000,
+            0,
+            0,
+            0});
             this.CostoNumericUpDown.Name = "CostoNumericUpDown";
             this.CostoNumericUpDown.Size = new System.Drawing.Size(120, 20);
             this.CostoNumericUpDown.TabIndex = 79;

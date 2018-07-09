@@ -1,5 +1,4 @@
-CREATE DATABASE SegundoParcialDb
+Create Database SegundoParcialDb
 GO
 USE SegundoParcialDb
 GO
-

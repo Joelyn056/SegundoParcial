@@ -125,5 +125,14 @@ namespace SegundoParcial.UI.Registro
            return Validar;
 
         }
+
+        private void PrecioNumericUpDown_ValueChanged(object sender, EventArgs e)
+        {
+           if( CostoNumericUpDown.Value != 0)
+            {
+                GananciaNumericUpDown.Value = BLL.ArticulosBLL.CalcularGanancia(CostoNumericUpDown.Value, PrecioNumericUpDown.Value);
+
+            }
+        }
     }
 }

@@ -106,7 +106,7 @@ namespace SegundoParcial.UI.Registro
             rEntradaArt rEntradaArt = new rEntradaArt();
 
             rEntradaArt.EntradaId = Convert.ToInt32(EntradaIDNumericUpDown.Value);
-            rEntradaArt.Articulo = Convert.ToInt32(ArticuloComboBox.Text);
+            rEntradaArt.Articulo =ArticuloComboBox.Text;
             rEntradaArt.Fecha = FechaDateTimePicker1.Value.Date;           
             rEntradaArt.Cantidad = Convert.ToInt32(CantidadNumericUpDown2.Value);
 

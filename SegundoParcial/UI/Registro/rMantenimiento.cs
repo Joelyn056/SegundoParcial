@@ -15,14 +15,15 @@ namespace SegundoParcial.UI.Registro
 {
     public partial class rMantenimiento : Form
     {
-        decimal ITBIS = 0;
-        decimal Importe = 0;
-        decimal Total = 0;
-        decimal SubTotal = 0;
+        //decimal ITBIS = 0;
+        //decimal Importe = 0;
+        //decimal Total = 0;
+        //decimal SubTotal = 0;
 
         public rMantenimiento()
         {
             InitializeComponent();
+            LlenaComboBox();
         }
 
         private void BuscarButton_Click(object sender, EventArgs e)
@@ -131,6 +132,16 @@ namespace SegundoParcial.UI.Registro
             return paso;
         }
 
+
+        private void CalcularImporte()
+        {
+            if (CantidadNumericUpDown.Value != 0)
+            {
+                ImporteNumericUpDown.Value = BLL.ArticulosBLL.CalcularImporte(CantidadNumericUpDown.Value, PrecioNumericUpDown.Value);
+            }
+            else
+                ImporteNumericUpDown.Value = 0;
+         }
         
         private void AgregarButton_Click(object sender, EventArgs e)
         {
@@ -141,6 +152,93 @@ namespace SegundoParcial.UI.Registro
                 mantenimientos = (List<MantenimientoD>)DetalledataGridView.DataSource;
             }
 
+            mantenimientos.Add(new MantenimientoD(
+
+                id: 0,
+                mantenimientoId: (int)MantenimientoIdNumericUpDown.Value,
+                vehiculoId: (int)VehiculoComboBox.SelectedValue,
+                precio: (int)PrecioNumericUpDown.Value,
+                importe: (int) ImporteNumericUpDown.Value,
+                articuloId: (int) ArticuloComboBox.SelectedValue,
+                cantidad: (int) CantidadNumericUpDown.Value,
+                tallerId: (int) TallerComboBox.SelectedValue,
+                total: (int) TotalnumericUpDown.Value
+
+            ));
+
+
+            DetalledataGridView.DataSource = null;
+            DetalledataGridView.DataSource = mantenimientos;
+            CalcularSubtotal();
+            CalcularItbis();
+            CalcularTotal();
+
+
+        }
+
+        private void LlenaComboBox()
+        {
+            Repositorio<Articulos> articulos = new Repositorio<Articulos>(new Contexto());
+            Repositorio<Talleres> talleres = new Repositorio<Talleres>(new Contexto());
+            Repositorio<Vehiculos> vehiculos = new Repositorio<Vehiculos>(new Contexto());
+
+            ArticuloComboBox.DataSource = articulos.GetList(a => true);
+            ArticuloComboBox.ValueMember = "ArticuloId";
+            ArticuloComboBox.DisplayMember = "Descripcion";
+
+            TallerComboBox.DataSource = talleres.GetList(t => true);
+            TallerComboBox.ValueMember = "TallerId";
+            TallerComboBox.DisplayMember = "Nombre";
+
+            VehiculoComboBox.DataSource = vehiculos.GetList(v => true);
+            VehiculoComboBox.ValueMember = "VehiculoId";
+            VehiculoComboBox.DisplayMember = "Descripcion";
+             
+
+        }
+
+        private void ArticuloComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            //Repositorio<Articulos> precio = new Repositorio<Articulos>(new Contexto());
+            Articulos articulos = (Articulos)ArticuloComboBox.SelectedItem;
+            PrecioNumericUpDown.Value = articulos.Precio;
+        }
+
+        private void CantidadNumericUpDown_ValueChanged(object sender, EventArgs e)
+        {
+            CalcularImporte();
+        }
+
+
+
+        private void CalcularSubtotal()
+        {
+            if(ImporteNumericUpDown.Value != 0)
+            {
+                SubTotalNumericUpDown.Value = BLL.ArticulosBLL.CalcularSubtotal(ImporteNumericUpDown.Value);
+            }
+        }
+
+
+        private void CalcularItbis()
+        {
+            if (SubTotalNumericUpDown.Value != 0)
+            {
+                ITBISNumericUpDown.Value = BLL.ArticulosBLL.CalcularItbis(SubTotalNumericUpDown.Value);
+            }
+        }
+
+        private void CalcularTotal()
+        {
+            if (SubTotalNumericUpDown.Value != 0 && ITBISNumericUpDown.Value!=0)
+            {
+                TotalnumericUpDown.Value = BLL.ArticulosBLL.CalcularTotal(SubTotalNumericUpDown.Value , ITBISNumericUpDown.Value);
+            }
+        }
+
+        private void FechaDateTimePicker_ValueChanged(object sender, EventArgs e)
+        {
+            ProximodaMantenimientoTimePicker.Value = FechaDateTimePicker.Value.AddMonths(3);
         }
     }
 }

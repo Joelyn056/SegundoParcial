@@ -101,23 +101,11 @@ namespace SegundoParcial.UI.Registro
         {
 
             bool paso = false;
-            if (validar == 1 && VehiculoIDNumericUpDown.Value == 0)
-            {
-                GeneralErrorProvider.SetError(VehiculoIDNumericUpDown, "el Vehiculo ID");
-                paso = true;
-
-            }
             if (validar == 2 && DescripcionTextBox.Text == string.Empty)
             {
                 GeneralErrorProvider.SetError(DescripcionTextBox, "Ingrese una descripcion");
                 paso = true;
-            }
-            if (validar == 2 && TotalManTeNumericUpDown2.Value == 0)
-            {
-
-                GeneralErrorProvider.SetError(TotalManTeNumericUpDown2, "Ingrese el proximo mantenimiento");
-                paso = true;
-            }
+            } 
             
             return paso;
         }

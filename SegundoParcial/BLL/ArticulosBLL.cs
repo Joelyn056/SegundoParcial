@@ -135,5 +135,26 @@ namespace SegundoParcial.BLL
             return Convert.ToDecimal(Costo) + Convert.ToDecimal(Ganancia);
 
         }
+
+        public static Decimal CalcularImporte(decimal cantidad, decimal precio)
+        {
+            return cantidad * precio;
+        }
+
+        public static Decimal CalcularSubtotal(decimal importe)
+        {
+            return importe;
+        }
+
+        public static Decimal CalcularItbis(decimal subtotal)
+        {
+            return subtotal * (decimal) 0.18;
+        }
+
+        public static Decimal CalcularTotal(decimal subtotal, decimal itbis)
+        {
+            return subtotal + itbis;
+        }
+
     }
 }

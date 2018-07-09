@@ -174,6 +174,7 @@
             this.ArticuloComboBox.Name = "ArticuloComboBox";
             this.ArticuloComboBox.Size = new System.Drawing.Size(100, 21);
             this.ArticuloComboBox.TabIndex = 116;
+            this.ArticuloComboBox.SelectedIndexChanged += new System.EventHandler(this.ArticuloComboBox_SelectedIndexChanged);
             // 
             // DetalledataGridView
             // 
@@ -197,7 +198,7 @@
             this.TotalnumericUpDown.Enabled = false;
             this.TotalnumericUpDown.Location = new System.Drawing.Point(527, 484);
             this.TotalnumericUpDown.Maximum = new decimal(new int[] {
-            50000,
+            50000000,
             0,
             0,
             0});
@@ -292,6 +293,7 @@
             this.FechaDateTimePicker.Name = "FechaDateTimePicker";
             this.FechaDateTimePicker.Size = new System.Drawing.Size(164, 20);
             this.FechaDateTimePicker.TabIndex = 136;
+            this.FechaDateTimePicker.ValueChanged += new System.EventHandler(this.FechaDateTimePicker_ValueChanged);
             // 
             // MantenimientoIdNumericUpDown
             // 
@@ -305,7 +307,7 @@
             this.SubTotalNumericUpDown.Enabled = false;
             this.SubTotalNumericUpDown.Location = new System.Drawing.Point(526, 432);
             this.SubTotalNumericUpDown.Maximum = new decimal(new int[] {
-            50000,
+            5000000,
             0,
             0,
             0});
@@ -321,7 +323,7 @@
             this.ITBISNumericUpDown.Enabled = false;
             this.ITBISNumericUpDown.Location = new System.Drawing.Point(527, 458);
             this.ITBISNumericUpDown.Maximum = new decimal(new int[] {
-            50000,
+            500000,
             0,
             0,
             0});
@@ -415,11 +417,17 @@
             this.CantidadNumericUpDown.Name = "CantidadNumericUpDown";
             this.CantidadNumericUpDown.Size = new System.Drawing.Size(93, 20);
             this.CantidadNumericUpDown.TabIndex = 153;
+            this.CantidadNumericUpDown.ValueChanged += new System.EventHandler(this.CantidadNumericUpDown_ValueChanged);
             // 
             // PrecioNumericUpDown
             // 
             this.PrecioNumericUpDown.Enabled = false;
             this.PrecioNumericUpDown.Location = new System.Drawing.Point(310, 174);
+            this.PrecioNumericUpDown.Maximum = new decimal(new int[] {
+            10000000,
+            0,
+            0,
+            0});
             this.PrecioNumericUpDown.Name = "PrecioNumericUpDown";
             this.PrecioNumericUpDown.Size = new System.Drawing.Size(101, 20);
             this.PrecioNumericUpDown.TabIndex = 154;
@@ -428,6 +436,11 @@
             // 
             this.ImporteNumericUpDown.Enabled = false;
             this.ImporteNumericUpDown.Location = new System.Drawing.Point(435, 173);
+            this.ImporteNumericUpDown.Maximum = new decimal(new int[] {
+            1000000,
+            0,
+            0,
+            0});
             this.ImporteNumericUpDown.Name = "ImporteNumericUpDown";
             this.ImporteNumericUpDown.Size = new System.Drawing.Size(106, 20);
             this.ImporteNumericUpDown.TabIndex = 155;
