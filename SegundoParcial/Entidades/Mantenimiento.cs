@@ -13,7 +13,7 @@ namespace SegundoParcial.Entidades
         [Key]
         public int MantenimientoId { get; set; }
         public DateTime Fecha { get; set; }
-        public int ProxiMantenimiento { get; set; }
+        public DateTime ProxiMantenimiento { get; set; }
         public string Vehiculo { get; set; }
         public int Taller { get; set; }
         
@@ -25,9 +25,9 @@ namespace SegundoParcial.Entidades
             this.Detalle = new List<MantenimientoD>();
         }
 
-        public void AgregarDetalle(int id, int mantenimientoId, string vehiculo, int proxiMantenimiento, int taller )
+        public void AgregarDetalle(int id, int mantenimientoId, string vehiculo, DateTime proxiMantenimiento, int taller, int cantidad, decimal precio, decimal importe )
         {
-            this.Detalle.Add(new MantenimientoD(id, mantenimientoId,vehiculo, proxiMantenimiento, taller));
+            this.Detalle.Add(new MantenimientoD(id, mantenimientoId,vehiculo, proxiMantenimiento, taller, cantidad, precio, importe));
         }
     }
 }

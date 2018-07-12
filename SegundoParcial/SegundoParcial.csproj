@@ -150,7 +150,7 @@
     <None Include="Resources\Delete.png" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="DAL\Scripts\SQLQuery2.sql" />
+    <Content Include="DAL\Scripts\SQLQuery1.sql" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -15,10 +15,6 @@ namespace SegundoParcial.UI.Registro
 {
     public partial class rMantenimiento : Form
     {
-        //decimal ITBIS = 0;
-        //decimal Importe = 0;
-        //decimal Total = 0;
-        //decimal SubTotal = 0;
 
         public rMantenimiento()
         {
@@ -30,7 +26,7 @@ namespace SegundoParcial.UI.Registro
         {
             GeneralErrorProvider.Clear();
 
-            if (Validar(1))
+            if (Validar())
             {
                 MessageBox.Show("Ingrese un ID");
                 return;
@@ -52,18 +48,25 @@ namespace SegundoParcial.UI.Registro
         private void Nuevobutton_Click(object sender, EventArgs e)
         {
             MantenimientoIdNumericUpDown.Value = 0;
-            //VehiculoComboBox.Text;
-            //TallerComboBox.Text;
+            FechaDateTimePicker.ResetText();
+            CantidadNumericUpDown.Value = 0;
+            ImporteNumericUpDown.Value = 0;
+            SubTotalNumericUpDown.Value = 0;
+            ITBISNumericUpDown.Value = 0;
+            TotalnumericUpDown.Value = 0;
+            DetalledataGridView.DataSource = null;
+            GeneralErrorProvider.Clear();
+
         }
 
         private void Guardarbutton_Click(object sender, EventArgs e)
         {
             bool paso = false;
-            if(Validar(2))
-            {
-                MessageBox.Show("llenar los campos");
+            if(Validar())
+            //{
+            //    MessageBox.Show("llenar los campos");
 
-            }
+            //}
 
             GeneralErrorProvider.Clear();
 
@@ -82,7 +85,7 @@ namespace SegundoParcial.UI.Registro
         {
             GeneralErrorProvider.Clear();
 
-            if(Validar(2))
+            if(Validar())
             {
                 MessageBox.Show("ingrese el mantenimiento Id");
                 return;
@@ -104,32 +107,43 @@ namespace SegundoParcial.UI.Registro
             mantenimiento.Vehiculo = VehiculoComboBox.Text;
             mantenimiento.Taller = int.Parse(TallerComboBox.Text);
 
+            foreach (DataGridViewRow item in DetalledataGridView.Rows)
+            {
+                mantenimiento.AgregarDetalle(
+                    ToInt(item.Cells["Id"].Value),
+                    ToInt(item.Cells["MantenimientoId"]),
+                    (item.Cells["Vehiculo"].Value.ToString()),
+                    (DateTime)(item.Cells["ProximoMantenimiento"].Value),
+                    ToInt(item.Cells["Taller"].Value),
+                    ToInt(item.Cells["Cantidad"].Value),
+                    ToInt(item.Cells["Precio"].Value),
+                    ToInt(item.Cells["Importe"].Value)
+                    );
+
+            }
+
             return mantenimiento;
         }
 
-        private bool Validar(int validar)
+        private int ToInt(object valor)
+        {
+            int retorno = 0;
+            int.TryParse(valor.ToString(), out retorno);
+            return retorno;
+        }
+
+        private bool Validar()
         {
 
-            bool paso = false;
-            if (validar == 1 && MantenimientoIdNumericUpDown.Value == 0)
+            bool Validar = false;
+            if (DetalledataGridView.RowCount == 0)
             {
-                GeneralErrorProvider.SetError(MantenimientoIdNumericUpDown, "el  ID");
-                paso = true;
+                GeneralErrorProvider.SetError(DetalledataGridView, "No hay datos para mostrar");
+                Validar = true;
 
             }
-            if (validar == 2 && VehiculoComboBox.Text == string.Empty)
-            {
-                GeneralErrorProvider.SetError(VehiculoComboBox, " vehiculo");
-                paso = true;
-            }
-            if (validar == 2 && TallerComboBox.Text ==  string.Empty)
-            {
-
-                GeneralErrorProvider.SetError(TallerComboBox, " elija la opcion taller");
-                paso = true;
-            }
-
-            return paso;
+           
+            return Validar;
         }
 
 
@@ -158,10 +172,12 @@ namespace SegundoParcial.UI.Registro
                 mantenimientoId: (int)MantenimientoIdNumericUpDown.Value,
                 vehiculoId: (int)VehiculoComboBox.SelectedValue,
                 precio: (int)PrecioNumericUpDown.Value,
-                importe: (int) ImporteNumericUpDown.Value,
-                articuloId: (int) ArticuloComboBox.SelectedValue,
-                cantidad: (int) CantidadNumericUpDown.Value,
-                tallerId: (int) TallerComboBox.SelectedValue,
+                importe: (int)ImporteNumericUpDown.Value,
+                articuloId: (int)ArticuloComboBox.SelectedValue,
+                cantidad: (int)CantidadNumericUpDown.Value,
+                subTotal: (int)SubTotalNumericUpDown.Value,
+                tallerId: (int)TallerComboBox.SelectedValue,
+                itbis: (int)ITBISNumericUpDown.Value,
                 total: (int) TotalnumericUpDown.Value
 
             ));
@@ -194,6 +210,29 @@ namespace SegundoParcial.UI.Registro
             VehiculoComboBox.ValueMember = "VehiculoId";
             VehiculoComboBox.DisplayMember = "Descripcion";
              
+
+        }
+
+
+
+        private void LlenaCampo(MantenimientoD mantenimiento)
+        {
+            MantenimientoIdNumericUpDown.Value = mantenimiento.MantenimientoId;
+            FechaDateTimePicker.Value = mantenimiento.Fecha;
+            ProximodaMantenimientoTimePicker.Value = mantenimiento.ProxiMantenimiento;
+            VehiculoComboBox.Text = mantenimiento.Vehiculo;
+            ArticuloComboBox.Text = mantenimiento.ToString();
+            CantidadNumericUpDown.Value = mantenimiento.Cantidad;
+            PrecioNumericUpDown.Value = mantenimiento.Precio;
+            ImporteNumericUpDown.Value = mantenimiento.Importe;
+            SubTotalNumericUpDown.Value = mantenimiento.SubTotal;
+            ITBISNumericUpDown.Value = mantenimiento.Itbis;
+            TotalnumericUpDown.Value = mantenimiento.Total;
+
+            DetalledataGridView.DataSource = mantenimiento;
+
+            DetalledataGridView.Columns["id"].Visible = false;
+            DetalledataGridView.Columns["MantenimientoI"].Visible = false;
 
         }
 
