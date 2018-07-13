@@ -42,14 +42,13 @@
             this.Costo = new System.Windows.Forms.Label();
             this.CostoNumericUpDown = new System.Windows.Forms.NumericUpDown();
             this.label4 = new System.Windows.Forms.Label();
-            this.GananciaNumericUpDown = new System.Windows.Forms.NumericUpDown();
             this.label5 = new System.Windows.Forms.Label();
             this.InventarioNumericUpDown = new System.Windows.Forms.NumericUpDown();
             this.GeneralErrorProvider = new System.Windows.Forms.ErrorProvider(this.components);
+            this.GananciaTextBox = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.PrecioNumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ArticuloIDNumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.CostoNumericUpDown)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.GananciaNumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.InventarioNumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.GeneralErrorProvider)).BeginInit();
             this.SuspendLayout();
@@ -188,13 +187,6 @@
             this.label4.TabIndex = 80;
             this.label4.Text = "% Ganacia";
             // 
-            // GananciaNumericUpDown
-            // 
-            this.GananciaNumericUpDown.Location = new System.Drawing.Point(293, 155);
-            this.GananciaNumericUpDown.Name = "GananciaNumericUpDown";
-            this.GananciaNumericUpDown.Size = new System.Drawing.Size(102, 20);
-            this.GananciaNumericUpDown.TabIndex = 81;
-            // 
             // label5
             // 
             this.label5.AutoSize = true;
@@ -209,6 +201,7 @@
             this.InventarioNumericUpDown.Enabled = false;
             this.InventarioNumericUpDown.Location = new System.Drawing.Point(293, 197);
             this.InventarioNumericUpDown.Name = "InventarioNumericUpDown";
+            this.InventarioNumericUpDown.ReadOnly = true;
             this.InventarioNumericUpDown.Size = new System.Drawing.Size(102, 20);
             this.InventarioNumericUpDown.TabIndex = 83;
             // 
@@ -216,14 +209,22 @@
             // 
             this.GeneralErrorProvider.ContainerControl = this;
             // 
+            // GananciaTextBox
+            // 
+            this.GananciaTextBox.Location = new System.Drawing.Point(293, 152);
+            this.GananciaTextBox.Name = "GananciaTextBox";
+            this.GananciaTextBox.ReadOnly = true;
+            this.GananciaTextBox.Size = new System.Drawing.Size(100, 20);
+            this.GananciaTextBox.TabIndex = 84;
+            // 
             // rArticulos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(418, 321);
+            this.Controls.Add(this.GananciaTextBox);
             this.Controls.Add(this.InventarioNumericUpDown);
             this.Controls.Add(this.label5);
-            this.Controls.Add(this.GananciaNumericUpDown);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.CostoNumericUpDown);
             this.Controls.Add(this.Costo);
@@ -242,7 +243,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.PrecioNumericUpDown)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ArticuloIDNumericUpDown)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.CostoNumericUpDown)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.GananciaNumericUpDown)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.InventarioNumericUpDown)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.GeneralErrorProvider)).EndInit();
             this.ResumeLayout(false);
@@ -265,9 +265,9 @@
         private System.Windows.Forms.Label Costo;
         private System.Windows.Forms.NumericUpDown CostoNumericUpDown;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.NumericUpDown GananciaNumericUpDown;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.NumericUpDown InventarioNumericUpDown;
         private System.Windows.Forms.ErrorProvider GeneralErrorProvider;
+        private System.Windows.Forms.TextBox GananciaTextBox;
     }
 }

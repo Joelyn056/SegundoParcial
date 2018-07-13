@@ -240,7 +240,7 @@ namespace SegundoParcial.UI.Registro
         {
             //Repositorio<Articulos> precio = new Repositorio<Articulos>(new Contexto());
             Articulos articulos = (Articulos)ArticuloComboBox.SelectedItem;
-            PrecioNumericUpDown.Value = articulos.Precio;
+            PrecioNumericUpDown.Value = Convert.ToDecimal(articulos.Precio);
         }
 
         private void CantidadNumericUpDown_ValueChanged(object sender, EventArgs e)

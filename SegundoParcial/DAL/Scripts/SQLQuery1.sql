@@ -1,4 +1,2 @@
 Create Database SegundoParcialDb
 GO
-USE SegundoParcialDb
-GO

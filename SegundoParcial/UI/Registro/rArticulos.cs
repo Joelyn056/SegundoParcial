@@ -19,14 +19,6 @@ namespace SegundoParcial.UI.Registro
 
         private void BuscarButton_Click(object sender, EventArgs e)
         {
-            //GeneralErrorProvider.Clear();
-
-            //if (Validar(1))
-            //{
-            //    MessageBox.Show("Ingrese el ID");
-            //    return;
-            //}
-
             int id = Convert.ToInt32(ArticuloIDNumericUpDown.Value);
             Articulos articulos = BLL.ArticulosBLL.Buscar(id);
 
@@ -34,10 +26,10 @@ namespace SegundoParcial.UI.Registro
             {
                 ArticuloIDNumericUpDown.Value = articulos.ArticuloId;
                 DescripcionTextBox.Text = articulos.Descripcion;
-                CostoNumericUpDown.Value = articulos.Costo;
-                PrecioNumericUpDown.Value = articulos.Precio;
-                GananciaNumericUpDown.Value = articulos.Ganancia;
-                InventarioNumericUpDown.Value = articulos.Inventario;
+                CostoNumericUpDown.Value = Convert.ToDecimal(articulos.Costo);
+                PrecioNumericUpDown.Value = Convert.ToDecimal(articulos.Precio);
+                GananciaTextBox.Text = articulos.Ganancia.ToString();
+                InventarioNumericUpDown.Value = Convert.ToDecimal(articulos.Inventario);
             }
             else
             {
@@ -52,7 +44,7 @@ namespace SegundoParcial.UI.Registro
             DescripcionTextBox.Clear();
             CostoNumericUpDown.Value = 0;
             PrecioNumericUpDown.Value = 0;
-            GananciaNumericUpDown.Value = 0;
+            GananciaTextBox.Clear();
             InventarioNumericUpDown.Value = 0;
         }
 
@@ -72,7 +64,17 @@ namespace SegundoParcial.UI.Registro
             if (ArticuloIDNumericUpDown.Value == 0)
                 paso = BLL.ArticulosBLL.Guardar(articulos);
             else
-                paso = BLL.ArticulosBLL.Modificar(articulos);
+            {
+                int id = Convert.ToInt32(ArticuloIDNumericUpDown.Value);
+                Articulos articulosd = BLL.ArticulosBLL.Buscar(id);
+                if (articulosd != null)
+                {
+                    paso = BLL.ArticulosBLL.Modificar(articulos);
+                }
+                else
+                 MessageBox.Show("No se pudo encontrar", "Fallo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+               
 
             if (paso)
                 MessageBox.Show("Guardado", "Exito", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -82,14 +84,6 @@ namespace SegundoParcial.UI.Registro
 
         private void Eliminarbutton_Click(object sender, EventArgs e)
         {
-            //GeneralErrorProvider.Clear();
-
-            //if (Validar())
-            //{
-            //    MessageBox.Show("Ingrese un ID");
-            //    return;
-            //}
-
             int id = Convert.ToInt32(ArticuloIDNumericUpDown.Value);
 
             if (BLL.ArticulosBLL.Eliminar(id))
@@ -106,7 +100,7 @@ namespace SegundoParcial.UI.Registro
             articulos.Descripcion = DescripcionTextBox.Text;
             articulos.Costo = Convert.ToInt32(CostoNumericUpDown.Value);
             articulos.Precio = Convert.ToInt32(PrecioNumericUpDown.Value);
-            articulos.Ganancia = Convert.ToInt32(GananciaNumericUpDown.Value);
+            articulos.Ganancia = Convert.ToInt32(GananciaTextBox.Text);
             articulos.Inventario = Convert.ToInt32(InventarioNumericUpDown.Value);
 
             return articulos;
@@ -130,7 +124,7 @@ namespace SegundoParcial.UI.Registro
         {
            if( CostoNumericUpDown.Value != 0)
             {
-                GananciaNumericUpDown.Value = BLL.ArticulosBLL.CalcularGanancia(CostoNumericUpDown.Value, PrecioNumericUpDown.Value);
+                GananciaTextBox.Text = BLL.ArticulosBLL.CalcularGanancia(CostoNumericUpDown.Value, PrecioNumericUpDown.Value).ToString();
 
             }
         }

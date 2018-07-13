@@ -19,7 +19,6 @@ namespace SegundoParcial.UI.Registro
             LlenaComboBox();
         }
 
-
         private void LlenaComboBox()
         {
             Repositorio<Articulos> repositorio = new Repositorio<Articulos>(new Contexto());
@@ -75,7 +74,17 @@ namespace SegundoParcial.UI.Registro
             if (EntradaIDNumericUpDown.Value == 0)
                 paso = BLL.rEntradaArtBLL.Guardar(LlenarClase());
             else
-                paso = BLL.rEntradaArtBLL.Modificar(LlenarClase());
+            {
+                int id = Convert.ToInt32(EntradaIDNumericUpDown.Value);
+                rEntradaArt rEntradaArt = BLL.rEntradaArtBLL.Buscar(id);
+                if (rEntradaArt != null)
+                {
+                    paso = BLL.rEntradaArtBLL.Modificar(LlenarClase());
+                }
+                else
+                    MessageBox.Show("No se pudo encontrar", "Fallo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            
 
             if (paso)
                 MessageBox.Show("Guardo", "Exito", MessageBoxButtons.OK, MessageBoxIcon.Information);
