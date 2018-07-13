@@ -21,8 +21,6 @@ namespace SegundoParcial.BLL
             {
                 if(contexto.rEntradaArts.Add(rEntradaArt) != null)
                 {
-                   
-
                     //foreach(var item in articulo.GetList(x => x.Descripcion == rEntradaArt.Articulo)
                     //{
                     //    contexto.Articulos.Find(item.ArticuloId).Inventario += rEntradaArt.Cantidad
