@@ -161,7 +161,6 @@ namespace SegundoParcial.BLL
             return subtotal + itbis;
         }
 
-
         public static string RetornarDescripcion(string nombre)
         {
             string descripcion = string.Empty;

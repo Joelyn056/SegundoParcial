@@ -29,8 +29,6 @@ namespace SegundoParcial.Entidades
         public int Itbis { get; set; }
         public int Total { get; set; }
 
-
-
         [ForeignKey("VehiculoId")]
         public virtual Vehiculos Vehiculos { get; set; }
         public object Articulo { get; internal set; }
