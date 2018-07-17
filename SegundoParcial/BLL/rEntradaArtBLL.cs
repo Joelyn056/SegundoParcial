@@ -15,16 +15,15 @@ namespace SegundoParcial.BLL
         {
             bool paso = false;
             Contexto contexto = new Contexto();
-            Repositorio<Articulos> articulo = new Repositorio<Articulos>(new Contexto());//
 
             try
             {
                 if(contexto.rEntradaArts.Add(rEntradaArt) != null)
                 {
-                    //foreach(var item in articulo.GetList(x => x.Descripcion == rEntradaArt.Articulo)
-                    //{
-                    //    contexto.Articulos.Find(item.ArticuloId).Inventario += rEntradaArt.Cantidad
-                    //}
+                    Articulos articulos = BLL.ArticulosBLL.Buscar(rEntradaArt.ArticuloId);
+                    articulos.Inventario += rEntradaArt.Cantidad;
+                    BLL.ArticulosBLL.Modificar(articulos);
+
                     contexto.SaveChanges();
                     paso = true;
                 }
@@ -44,7 +43,16 @@ namespace SegundoParcial.BLL
             Contexto contexto = new Contexto();
             try
             {
+                rEntradaArt art = BLL.rEntradaArtBLL.Buscar(rEntradaArt.EntradaId);
+                int resta;
+                resta = rEntradaArt.Cantidad - art.Cantidad;
+
+                Articulos articulos = BLL.ArticulosBLL.Buscar(rEntradaArt.ArticuloId);
+                articulos.Inventario += resta;
+                BLL.ArticulosBLL.Modificar(articulos);
+
                 contexto.Entry(rEntradaArt).State = EntityState.Modified;
+
                 if(contexto.SaveChanges() > 0)
                 {
                     paso = true;
@@ -68,13 +76,21 @@ namespace SegundoParcial.BLL
             {
                 rEntradaArt rEntradaArt = contexto.rEntradaArts.Find(id);
 
-                contexto.rEntradaArts.Remove(rEntradaArt);
+                if(rEntradaArt !=null)
+                {
+                    Articulos articulos = BLL.ArticulosBLL.Buscar(rEntradaArt.EntradaId);
+                    articulos.Inventario -= rEntradaArt.Cantidad;
+                    BLL.ArticulosBLL.Modificar(articulos);
+
+                    contexto.Entry(rEntradaArt).State = EntityState.Deleted;
+                }
+
                 if(contexto.SaveChanges() > 0)
                 {
                     paso = true;
+                    contexto.Dispose();
                 }
 
-                contexto.Dispose();
             }
             catch(Exception)
             {

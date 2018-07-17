@@ -61,12 +61,17 @@ namespace SegundoParcial.BLL
             {
                 Articulos articulos = contexto.Articulos.Find(id);
 
-                contexto.Articulos.Remove(articulos);
+                if(articulos != null)
+                {
+                    contexto.Entry(articulos).State = EntityState.Deleted;
+                }
+
                 if(contexto.SaveChanges() > 0)
                 {
                     paso = true;
+                    contexto.Dispose();
                 }
-                contexto.Dispose();
+                
             }
 
             catch(Exception)
@@ -156,5 +161,16 @@ namespace SegundoParcial.BLL
             return subtotal + itbis;
         }
 
+
+        public static string RetornarDescripcion(string nombre)
+        {
+            string descripcion = string.Empty;
+            var lista = GetList(x => x.Descripcion.Equals(nombre));
+            foreach (var item in lista)
+            {
+                descripcion = item.Descripcion;
+            }
+            return descripcion;
+        }
     }
 }

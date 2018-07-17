@@ -33,7 +33,7 @@ namespace SegundoParcial.Entidades
 
         [ForeignKey("VehiculoId")]
         public virtual Vehiculos Vehiculos { get; set; }
-
+        public object Articulo { get; internal set; }
 
         public MantenimientoD()
         {

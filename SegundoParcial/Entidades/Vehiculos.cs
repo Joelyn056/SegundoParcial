@@ -11,14 +11,14 @@ namespace SegundoParcial.Entidades
         [Key]
 
         public int VehiculoId { get; set; }
-        public int Mantenimiento { get; set; }
+        public decimal TotalMantenimiento { get; set; }
         public string Descripcion { get; set; }
-      
-            
+        public int Inventario { get; internal set; }
+
         public Vehiculos()
         {
             VehiculoId = 0;
-            Mantenimiento = 0;
+            TotalMantenimiento = 0;
             Descripcion = string.Empty;           
             
         }

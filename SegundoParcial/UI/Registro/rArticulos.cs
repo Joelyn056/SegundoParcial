@@ -123,7 +123,7 @@ namespace SegundoParcial.UI.Registro
         private void PrecioNumericUpDown_ValueChanged(object sender, EventArgs e)
         {
            if( CostoNumericUpDown.Value != 0)
-            {
+           {
                 GananciaTextBox.Text = BLL.ArticulosBLL.CalcularGanancia(CostoNumericUpDown.Value, PrecioNumericUpDown.Value).ToString();
 
             }

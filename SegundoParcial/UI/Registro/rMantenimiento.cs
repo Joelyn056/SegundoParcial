@@ -38,7 +38,7 @@ namespace SegundoParcial.UI.Registro
             if (mantenimiento != null)
             {
                 MantenimientoIdNumericUpDown.Value = mantenimiento.MantenimientoId;
-                VehiculoComboBox.Text = mantenimiento.Vehiculo;
+                //VehiculoComboBox.Text = mantenimiento.Vehiculo;
                 TallerComboBox.Text = mantenimiento.Taller.ToString();
             }
             else
@@ -104,7 +104,7 @@ namespace SegundoParcial.UI.Registro
             Mantenimiento mantenimiento = new Mantenimiento();
 
             mantenimiento.MantenimientoId = Convert.ToInt32(MantenimientoIdNumericUpDown.Value);
-            mantenimiento.Vehiculo = VehiculoComboBox.Text;
+            mantenimiento.VehiculoId =int.Parse(VehiculoComboBox.Text);
             mantenimiento.Taller = int.Parse(TallerComboBox.Text);
 
             foreach (DataGridViewRow item in DetalledataGridView.Rows)

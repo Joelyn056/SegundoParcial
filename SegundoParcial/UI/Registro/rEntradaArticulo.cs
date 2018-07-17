@@ -44,7 +44,7 @@ namespace SegundoParcial.UI.Registro
             if (rEntradaArt != null)
             {
                 EntradaIDNumericUpDown.Value = rEntradaArt.EntradaId;
-                ArticuloComboBox.Text = rEntradaArt.Articulo.ToString();
+                ArticuloComboBox.Text = rEntradaArt.ArticuloId.ToString();
                 CantidadNumericUpDown2.Value = rEntradaArt.Cantidad;
                 
             }
@@ -115,7 +115,7 @@ namespace SegundoParcial.UI.Registro
             rEntradaArt rEntradaArt = new rEntradaArt();
 
             rEntradaArt.EntradaId = Convert.ToInt32(EntradaIDNumericUpDown.Value);
-            rEntradaArt.Articulo =ArticuloComboBox.Text;
+            rEntradaArt.ArticuloId =(int)ArticuloComboBox.SelectedValue;
             rEntradaArt.Fecha = FechaDateTimePicker1.Value.Date;           
             rEntradaArt.Cantidad = Convert.ToInt32(CantidadNumericUpDown2.Value);
 

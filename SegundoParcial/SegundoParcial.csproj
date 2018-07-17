@@ -149,7 +149,6 @@
     <None Include="Resources\find.png" />
     <None Include="Resources\Delete.png" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <Content Include="DAL\Scripts\SQLQuery1.sql" />
   </ItemGroup>

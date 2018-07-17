@@ -34,7 +34,7 @@ namespace SegundoParcial.UI.Registro
             {
                 VehiculoIDNumericUpDown.Value = vehiculos.VehiculoId;
                 DescripcionTextBox.Text = vehiculos.Descripcion;
-                TotalManTeNumericUpDown2.Value = vehiculos.Mantenimiento;
+                TotalManTeNumericUpDown2.Value = vehiculos.TotalMantenimiento;
             }
             else
                 MessageBox.Show("No se encontro", "Fallo", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -92,7 +92,7 @@ namespace SegundoParcial.UI.Registro
 
             vehi.VehiculoId = Convert.ToInt32(VehiculoIDNumericUpDown.Value);
             vehi.Descripcion = DescripcionTextBox.Text;
-            vehi.Mantenimiento = Convert.ToInt32(TotalManTeNumericUpDown2.Value);
+            vehi.TotalMantenimiento = Convert.ToInt32(TotalManTeNumericUpDown2.Value);
 
             return vehi;
         }

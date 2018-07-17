@@ -16,12 +16,13 @@ namespace SegundoParcial.Entidades
         public double Precio { get; set; }
         public double Ganancia { get; set; }
         public double Inventario { get; set; }
+        public decimal Totalmantenimiento { get; set; }
 
         public Articulos()
         {
             ArticuloId = 0;
             Descripcion = string.Empty;
-            Costo = 0;
+            this.Costo= 0;
             Precio = 0;
             Ganancia = 0;
             Inventario = 0;

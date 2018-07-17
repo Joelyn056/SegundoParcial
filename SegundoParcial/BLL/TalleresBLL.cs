@@ -37,7 +37,6 @@ namespace SegundoParcial.BLL
         public static bool Modificar(Talleres talleres)
         {
             bool paso = false;
-
             Contexto contexto = new Contexto();
             try
             {

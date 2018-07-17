@@ -73,13 +73,17 @@ namespace SegundoParcial.BLL
 
                 Vehiculos vehiculos = contexto.Vehiculo.Find(id);
 
-                contexto.Vehiculo.Remove(vehiculos);
+                if(vehiculos != null)
+                {
+                    contexto.Entry(vehiculos).State = EntityState.Deleted;
+                }
+
                 if (contexto.SaveChanges() > 0)
                 {
                     paso = true;
+                    contexto.Dispose();
                 }
 
-                contexto.Dispose();
             }
 
             catch (Exception)
