@@ -65,7 +65,7 @@ namespace SegundoParcial.UI.Registro
                 paso = BLL.TalleresBLL.Modificar(LlenarClase());
 
             if (paso)
-                MessageBox.Show("Guardado", "Fallo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Guardado", "Exito", MessageBoxButtons.OK, MessageBoxIcon.Information);
             else
                 MessageBox.Show("No se pudo guardar", "Fallo", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }

@@ -17,18 +17,27 @@ namespace SegundoParcial.BLL
             bool paso = false;
             Contexto contexto = new Contexto();
 
-            Vehiculos vehiculos = new Vehiculos();
+            //Vehiculos vehiculos = new Vehiculos();
             try                
             {
                 if (contexto.Mantenimiento.Add(mantenimiento) != null)
                 {
                     foreach (var item in mantenimiento.Detalle)
                     {
-                        contexto.Vehiculo.Find(item.ArticuloId).Inventario += item.Cantidad;
+                        var articulo = contexto.Articulos.Find(item.ArticuloId);
+                        articulo.Inventario -= item.Cantidad;
+
+                        var vehiculo = contexto.Vehiculo.Find(item.VehiculoId);
+                        vehiculo.TotalMantenimiento += Convert.ToDecimal(item.Importe);
                     }
 
-                    contexto.Articulos.Find(mantenimiento.VehiculoId).Totalmantenimiento += mantenimiento.Total;
-                        
+
+                    //foreach (var item in mantenimiento.Detalle)
+                    //{
+                    //    contexto.Vehiculo.Find(item.VehiculoId).TotalMantenimiento += mantenimiento.Total;
+
+                    //}
+
                     contexto.SaveChanges();
                     paso = true;
                 }
@@ -36,7 +45,9 @@ namespace SegundoParcial.BLL
             }
             catch(Exception)
             {
+               
                 throw;
+               
             }
             return paso;
         }
@@ -47,43 +58,62 @@ namespace SegundoParcial.BLL
             Contexto contexto = new Contexto();
             try
             {
-                var Mantenimiento = BLL.MantenimientoBLL.Buscar(mantenimiento.MantenimientoId);
 
-                if(Mantenimiento != null)
+                int sum = 0;
+                int sumTotal = 0;
+                foreach(var item in mantenimiento.Detalle)
                 {
-                    foreach (var item in mantenimiento.Detalle)
-                    {
-                        contexto.Articulos.Find(item.ArticuloId).Inventario += item.Cantidad;
+                    var estado = item.Id > 0 ? EntityState.Modified : EntityState.Added;
+                    contexto.Entry(item).State = estado;
 
-                        if(!mantenimiento.Detalle.ToList().Exists(x => x.Id== item.Id))
-                        {
-                            item.Articulo = null;
-                            contexto.Entry(item).State = EntityState.Deleted;
+                    //Todo
+
+                    sum += item.Cantidad;
+                    sumTotal += Convert.ToInt32(item.Importe);
+                    contexto.Articulos.Find(item.ArticuloId).Inventario -= sum;
+                    contexto.Vehiculo.Find(item.VehiculoId).TotalMantenimiento = Convert.ToDecimal(sumTotal);//ojo
+                }
+
+                contexto.Entry(mantenimiento).State = EntityState.Modified;
+                {
+
+                    //var Mantenimiento = BLL.MantenimientoBLL.Buscar(mantenimiento.MantenimientoId);
+
+                    //if(Mantenimiento != null)
+                    
+                   // foreach (var item in mantenimiento.Detalle)
+                    // {
+                   //    contexto.Articulos.Find(item.ArticuloId).Inventario += item.Cantidad;
+
+                    //   if(!mantenimiento.Detalle.ToList().Exists(x => x.Id== item.Id))
+                    //   {
+                    //    item.Articulo = null;
+                    //  contexto.Entry(item).State = EntityState.Deleted;
                                 
-                        }
-                    }
+                    //   }
+                    //  }
 
-                    foreach(var item in mantenimiento.Detalle)
-                    {
-                        contexto.Articulos.Find(item.ArticuloId).Inventario -= item.Cantidad;
+                    //foreach(var item in mantenimiento.Detalle)
+                    //{
+                    //    contexto.Articulos.Find(item.ArticuloId).Inventario -= item.Cantidad;
 
-                        var estado = item.Id > 0 ? EntityState.Modified : EntityState.Added;
-                        contexto.Entry(item).State = estado;
-                    }
+                    //    var estado = item.Id > 0 ? EntityState.Modified : EntityState.Added;
+                    //    contexto.Entry(item).State = estado;
+                    //}
 
-                    Mantenimiento anterior = BLL.MantenimientoBLL.Buscar(mantenimiento.MantenimientoId);
+                    //Mantenimiento anterior = BLL.MantenimientoBLL.Buscar(mantenimiento.MantenimientoId);
 
-                    //Identifica la direncia sumada o restada
-                    decimal diferencia;
+                    ////Identifica la direncia sumada o restada
+                    //decimal diferencia;
 
-                    diferencia = mantenimiento.Total - anterior.Total;
+                    //diferencia = mantenimiento.Total - anterior.Total;
 
-                    //aplica diferencia al inventario
-                    Vehiculos vehiculos = BLL.VehiculosBLL.Buscar(mantenimiento.VehiculoId);
-                    vehiculos.TotalMantenimiento += diferencia;
-                    BLL.VehiculosBLL.Modificar(vehiculos);
+                    ////aplica diferencia al inventario
+                    //Vehiculos vehiculos = BLL.VehiculosBLL.Buscar(mantenimiento.VehiculoId);
+                    //vehiculos.TotalMantenimiento += diferencia;
+                    //BLL.VehiculosBLL.Modificar(vehiculos);
 
-                    contexto.Entry(mantenimiento).State = EntityState.Modified;
+                    //contexto.Entry(mantenimiento).State = EntityState.Modified;
 
                 }
                 if(contexto.SaveChanges() > 0)
@@ -107,6 +137,30 @@ namespace SegundoParcial.BLL
             try
             {
                 Mantenimiento mantenimiento = contexto.Mantenimiento.Find(id);
+
+                foreach(var item in mantenimiento.Detalle)
+                {
+                    var articulo = contexto.Articulos.Find(item.ArticuloId);
+                    articulo.Inventario += item.Cantidad;
+
+                    var vehiculo = contexto.Vehiculo.Find(item.VehiculoId);
+                    vehiculo.TotalMantenimiento -= Convert.ToDecimal(item.Importe);
+                }
+                   // contexto.mantenimientos.Remove(mantenimiento); ojo
+
+
+                //if (mantenimiento != null)
+                //{
+                //    foreach (var item in mantenimiento.Detalle)
+                //    {
+                //        contexto.Articulos.Find(item.ArticuloId).Inventario += item.Cantidad;
+                //    }
+
+                //    contexto.Vehiculo.Find(mantenimiento.VehiculoId).TotalMantenimiento -= mantenimiento.Total;
+
+                //    mantenimiento.Detalle.Count();
+                //    contexto.Mantenimiento.Remove(mantenimiento);
+                //}
 
                 if (contexto.SaveChanges() >0)
                 {
@@ -134,10 +188,16 @@ namespace SegundoParcial.BLL
                 mantenimiento = contexto.Mantenimiento.Find(id);
                 mantenimiento.Detalle.Count();
 
-                foreach (var item in mantenimiento.Detalle)
-                {
-                    string s = item.Vehiculos.Descripcion;
-                }
+                //foreach(var item in mantenimiento.Detalle)
+                //{
+                //    mantenimiento.Detalle.Count();
+
+                    foreach (var item in mantenimiento.Detalle)
+                    {
+                        string s = item.Vehiculos.Descripcion;
+                    }
+                //}
+               
                 contexto.Dispose();
             }
 
@@ -175,6 +235,11 @@ namespace SegundoParcial.BLL
         public static decimal SubTotal(decimal importe)
         {
             return importe;
+        }
+
+        public static decimal CalcularITBIS(decimal subtotal)
+        {
+            return Convert.ToDecimal(subtotal) * Convert.ToDecimal(0.18);
         }
 
         public static decimal Total(decimal Subtotal, decimal ITBIS)

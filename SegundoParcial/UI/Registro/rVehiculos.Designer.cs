@@ -48,6 +48,11 @@
             // VehiculoIDNumericUpDown
             // 
             this.VehiculoIDNumericUpDown.Location = new System.Drawing.Point(99, 41);
+            this.VehiculoIDNumericUpDown.Maximum = new decimal(new int[] {
+            99999,
+            0,
+            0,
+            0});
             this.VehiculoIDNumericUpDown.Name = "VehiculoIDNumericUpDown";
             this.VehiculoIDNumericUpDown.Size = new System.Drawing.Size(183, 20);
             this.VehiculoIDNumericUpDown.TabIndex = 64;
@@ -138,7 +143,6 @@
             // 
             // TotalManTeNumericUpDown2
             // 
-            this.TotalManTeNumericUpDown2.Enabled = false;
             this.TotalManTeNumericUpDown2.Location = new System.Drawing.Point(139, 167);
             this.TotalManTeNumericUpDown2.Name = "TotalManTeNumericUpDown2";
             this.TotalManTeNumericUpDown2.Size = new System.Drawing.Size(120, 20);

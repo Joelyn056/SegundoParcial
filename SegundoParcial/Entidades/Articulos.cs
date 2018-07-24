@@ -12,17 +12,17 @@ namespace SegundoParcial.Entidades
 
         public int ArticuloId { get; set; }
         public string Descripcion { get; set; }
-        public double Costo { get; set; }
-        public double Precio { get; set; }
-        public double Ganancia { get; set; }
-        public double Inventario { get; set; }
-        public decimal Totalmantenimiento { get; set; }
+        public decimal Costo { get; set; }
+        public decimal Precio { get; set; }
+        public decimal Ganancia { get; set; }
+        public decimal Inventario { get; set; }
+       
 
         public Articulos()
         {
             ArticuloId = 0;
             Descripcion = string.Empty;
-            this.Costo= 0;
+            Costo= 0;
             Precio = 0;
             Ganancia = 0;
             Inventario = 0;

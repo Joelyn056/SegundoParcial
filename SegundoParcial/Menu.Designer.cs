@@ -35,9 +35,11 @@
             this.registroCotizacionesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.registroEntradaArticuloToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.registroVehiculoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.registroTalleresToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.vehiculoToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.mantenimientoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.registroTalleresToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.articulosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.vehiculosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -100,10 +102,19 @@
             this.registroVehiculoToolStripMenuItem.Text = "Registro vehiculo";
             this.registroVehiculoToolStripMenuItem.Click += new System.EventHandler(this.registroVehiculoToolStripMenuItem_Click);
             // 
+            // registroTalleresToolStripMenuItem
+            // 
+            this.registroTalleresToolStripMenuItem.Name = "registroTalleresToolStripMenuItem";
+            this.registroTalleresToolStripMenuItem.Size = new System.Drawing.Size(205, 22);
+            this.registroTalleresToolStripMenuItem.Text = "Registro Talleres";
+            this.registroTalleresToolStripMenuItem.Click += new System.EventHandler(this.registroTalleresToolStripMenuItem_Click);
+            // 
             // vehiculoToolStripMenuItem1
             // 
             this.vehiculoToolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.mantenimientoToolStripMenuItem});
+            this.mantenimientoToolStripMenuItem,
+            this.articulosToolStripMenuItem,
+            this.vehiculosToolStripMenuItem});
             this.vehiculoToolStripMenuItem1.Name = "vehiculoToolStripMenuItem1";
             this.vehiculoToolStripMenuItem1.Size = new System.Drawing.Size(71, 20);
             this.vehiculoToolStripMenuItem1.Text = "Consultas";
@@ -114,12 +125,19 @@
             this.mantenimientoToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
             this.mantenimientoToolStripMenuItem.Text = "Mantenimiento";
             // 
-            // registroTalleresToolStripMenuItem
+            // articulosToolStripMenuItem
             // 
-            this.registroTalleresToolStripMenuItem.Name = "registroTalleresToolStripMenuItem";
-            this.registroTalleresToolStripMenuItem.Size = new System.Drawing.Size(205, 22);
-            this.registroTalleresToolStripMenuItem.Text = "Registro Talleres";
-            this.registroTalleresToolStripMenuItem.Click += new System.EventHandler(this.registroTalleresToolStripMenuItem_Click);
+            this.articulosToolStripMenuItem.Name = "articulosToolStripMenuItem";
+            this.articulosToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
+            this.articulosToolStripMenuItem.Text = "Articulos";
+            this.articulosToolStripMenuItem.Click += new System.EventHandler(this.articulosToolStripMenuItem_Click);
+            // 
+            // vehiculosToolStripMenuItem
+            // 
+            this.vehiculosToolStripMenuItem.Name = "vehiculosToolStripMenuItem";
+            this.vehiculosToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
+            this.vehiculosToolStripMenuItem.Text = "Vehiculos";
+            this.vehiculosToolStripMenuItem.Click += new System.EventHandler(this.vehiculosToolStripMenuItem_Click);
             // 
             // Menu
             // 
@@ -127,6 +145,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(468, 269);
             this.Controls.Add(this.menuStrip1);
+            this.IsMdiContainer = true;
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "Menu";
             this.Text = "Menu";
@@ -149,6 +168,8 @@
         private System.Windows.Forms.ToolStripMenuItem registroEntradaArticuloToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem registroVehiculoToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem registroTalleresToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem articulosToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem vehiculosToolStripMenuItem;
     }
 }
 

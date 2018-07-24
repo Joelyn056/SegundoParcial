@@ -8,6 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using SegundoParcial.DAL;
 using SegundoParcial.Entidades;
+using SegundoParcial.BLL;
 
 namespace SegundoParcial.UI.Registro
 {
@@ -30,8 +31,6 @@ namespace SegundoParcial.UI.Registro
 
         private void BuscarButtonT_Click(object sender, EventArgs e)
         {
-            GeneralErrorProvider.Clear();
-
             //if (Validar(1))
             //{
             //    MessageBox.Show("Ingrese el ID");
@@ -49,7 +48,11 @@ namespace SegundoParcial.UI.Registro
                 
             }
             else
+            {
                 MessageBox.Show("No se encontro", "Fallo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+            }
+            GeneralErrorProvider.Clear();
         }
 
         private void Nuevobutton_Click(object sender, EventArgs e)
@@ -69,33 +72,37 @@ namespace SegundoParcial.UI.Registro
             //    return;
             //}
 
-            GeneralErrorProvider.Clear();
-
             if (EntradaIDNumericUpDown.Value == 0)
                 paso = BLL.rEntradaArtBLL.Guardar(LlenarClase());
             else
             {
                 int id = Convert.ToInt32(EntradaIDNumericUpDown.Value);
                 rEntradaArt rEntradaArt = BLL.rEntradaArtBLL.Buscar(id);
+
                 if (rEntradaArt != null)
                 {
                     paso = BLL.rEntradaArtBLL.Modificar(LlenarClase());
                 }
                 else
-                    MessageBox.Show("No se pudo encontrar", "Fallo", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            
+                    MessageBox.Show("Id no existe", "Fallo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            } 
 
             if (paso)
+            {
                 MessageBox.Show("Guardo", "Exito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+            }
             else
+            {
                 MessageBox.Show("No se guardo", "Fallo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+            }
+            GeneralErrorProvider.Clear();
         }
 
         private void Eliminarbutton_Click(object sender, EventArgs e)
         {
-            GeneralErrorProvider.Clear();
-
+            
             //if(Validar(2))
             //{
             //    MessageBox.Show("Ingrese el Id");
@@ -103,11 +110,20 @@ namespace SegundoParcial.UI.Registro
             //}
 
             int id = Convert.ToInt32(EntradaIDNumericUpDown.Value);
+            //rEntradaArt rEntradaArt = rEntradaArtBLL.Buscar(id);
 
-            if (BLL.rEntradaArtBLL.Eliminar(id))
-                MessageBox.Show("Elimino", "Exito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            else
-                MessageBox.Show("No se pudo Guadar", "Fallo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //if(rEntradaArt != null)
+            //{
+                if(BLL.rEntradaArtBLL.Eliminar(id))
+                {
+                    MessageBox.Show("Eliminado", "Exito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    
+                }
+                else
+                
+                    MessageBox.Show("No se pudo eliminar!!", "Fallo", MessageBoxButtons.OK, MessageBoxIcon.Error);               
+            //}
+            GeneralErrorProvider.Clear();
         }
 
         private rEntradaArt LlenarClase()

@@ -91,6 +91,11 @@
             // ArticuloIDNumericUpDown
             // 
             this.ArticuloIDNumericUpDown.Location = new System.Drawing.Point(99, 42);
+            this.ArticuloIDNumericUpDown.Maximum = new decimal(new int[] {
+            99999,
+            0,
+            0,
+            0});
             this.ArticuloIDNumericUpDown.Name = "ArticuloIDNumericUpDown";
             this.ArticuloIDNumericUpDown.Size = new System.Drawing.Size(183, 20);
             this.ArticuloIDNumericUpDown.TabIndex = 74;
@@ -198,7 +203,6 @@
             // 
             // InventarioNumericUpDown
             // 
-            this.InventarioNumericUpDown.Enabled = false;
             this.InventarioNumericUpDown.Location = new System.Drawing.Point(293, 197);
             this.InventarioNumericUpDown.Name = "InventarioNumericUpDown";
             this.InventarioNumericUpDown.ReadOnly = true;

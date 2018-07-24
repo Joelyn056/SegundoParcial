@@ -13,6 +13,7 @@ namespace SegundoParcial.Entidades
         public DateTime Fecha { get; set; }
         public int ArticuloId { get; set; }
         public int Cantidad { get; set; }
+        public string NombreArticulo { get; set; }
 
         public rEntradaArt()
         {
@@ -20,6 +21,7 @@ namespace SegundoParcial.Entidades
             Fecha = DateTime.Now;
             ArticuloId = 0;
             Cantidad = 0;
+            NombreArticulo = string.Empty;
         }
 
     }

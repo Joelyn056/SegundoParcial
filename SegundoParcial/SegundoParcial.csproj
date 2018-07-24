@@ -72,6 +72,18 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UI\Consultas\ConsultaArticulos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Consultas\ConsultaArticulos.Designer.cs">
+      <DependentUpon>ConsultaArticulos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Consultas\ConsultaVehiculos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Consultas\ConsultaVehiculos.Designer.cs">
+      <DependentUpon>ConsultaVehiculos.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\Registro\rArticulos.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -115,6 +127,12 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="UI\Consultas\ConsultaArticulos.resx">
+      <DependentUpon>ConsultaArticulos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Consultas\ConsultaVehiculos.resx">
+      <DependentUpon>ConsultaVehiculos.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UI\Registro\rArticulos.resx">
       <DependentUpon>rArticulos.cs</DependentUpon>
     </EmbeddedResource>
@@ -148,6 +166,10 @@
     <None Include="Resources\imprimir.png" />
     <None Include="Resources\find.png" />
     <None Include="Resources\Delete.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Remover.png" />
+    <None Include="Resources\vcsremoved_103741.png" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="DAL\Scripts\SQLQuery1.sql" />

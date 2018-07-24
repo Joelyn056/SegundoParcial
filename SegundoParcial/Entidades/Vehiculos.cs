@@ -13,13 +13,13 @@ namespace SegundoParcial.Entidades
         public int VehiculoId { get; set; }
         public decimal TotalMantenimiento { get; set; }
         public string Descripcion { get; set; }
-        public int Inventario { get; set; }
+    
 
         public Vehiculos()
         {
-            VehiculoId = 0;
-            TotalMantenimiento = 0;
-            Descripcion = string.Empty;           
+           this.VehiculoId = 0;
+           this.TotalMantenimiento = 0;
+           this.Descripcion = string.Empty;           
             
         }
     }

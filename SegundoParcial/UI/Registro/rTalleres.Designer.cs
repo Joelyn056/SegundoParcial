@@ -45,6 +45,11 @@
             // TallerIDNumericUpDown
             // 
             this.TallerIDNumericUpDown.Location = new System.Drawing.Point(97, 42);
+            this.TallerIDNumericUpDown.Maximum = new decimal(new int[] {
+            9999,
+            0,
+            0,
+            0});
             this.TallerIDNumericUpDown.Name = "TallerIDNumericUpDown";
             this.TallerIDNumericUpDown.Size = new System.Drawing.Size(183, 20);
             this.TallerIDNumericUpDown.TabIndex = 74;

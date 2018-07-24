@@ -129,8 +129,8 @@ namespace SegundoParcial.BLL
 
         public static decimal CalcularGanancia(decimal Costo, decimal Precio)
         {
-            Precio -= Costo;
-            return (Convert.ToDecimal(Precio) / Convert.ToDecimal(Costo)) * 100;
+            decimal P = Precio - Costo;
+            return (Convert.ToDecimal(P) / Convert.ToDecimal(Costo)) * 100;
         }
 
         public static decimal CalcularPrecio(decimal Costo, decimal Ganancia)

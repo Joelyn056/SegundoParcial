@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using SegundoParcial.UI.Registro;
+using SegundoParcial.UI.Consultas;
 
 namespace SegundoParcial
 {
@@ -45,6 +46,16 @@ namespace SegundoParcial
         private void registroTalleresToolStripMenuItem_Click(object sender, EventArgs e)
         {
             new rTalleres().Show();
+        }
+
+        private void articulosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            new ConsultaArticulos().Show();
+        }
+
+        private void vehiculosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            new ConsultaVehiculos().Show();
         }
     }
 }

@@ -29,6 +29,7 @@ namespace SegundoParcial.UI.Registro
                 CostoNumericUpDown.Value = Convert.ToDecimal(articulos.Costo);
                 PrecioNumericUpDown.Value = Convert.ToDecimal(articulos.Precio);
                 GananciaTextBox.Text = articulos.Ganancia.ToString();
+                //GananciaNumericUpDown.Value = Convert.ToDecimal(articulos.Ganancia);
                 InventarioNumericUpDown.Value = Convert.ToDecimal(articulos.Inventario);
             }
             else
@@ -44,6 +45,7 @@ namespace SegundoParcial.UI.Registro
             DescripcionTextBox.Clear();
             CostoNumericUpDown.Value = 0;
             PrecioNumericUpDown.Value = 0;
+            //GananciaNumericUpDown.Value = 0;//
             GananciaTextBox.Clear();
             InventarioNumericUpDown.Value = 0;
         }
@@ -52,9 +54,11 @@ namespace SegundoParcial.UI.Registro
         {
             bool paso = false;
             Articulos articulos = new Articulos();
+
             if (Validar())
             {
-                MessageBox.Show("Llenar todos los campos marcados");
+                MessageBox.Show("Favor revisar todos los campos", "Validación",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
             GeneralErrorProvider.Clear();
@@ -62,24 +66,31 @@ namespace SegundoParcial.UI.Registro
             articulos = LlenarClase();
 
             if (ArticuloIDNumericUpDown.Value == 0)
+            {
                 paso = BLL.ArticulosBLL.Guardar(articulos);
+            }
             else
             {
                 int id = Convert.ToInt32(ArticuloIDNumericUpDown.Value);
+
                 Articulos articulosd = BLL.ArticulosBLL.Buscar(id);
+
                 if (articulosd != null)
                 {
                     paso = BLL.ArticulosBLL.Modificar(articulos);
                 }
-                else
-                 MessageBox.Show("No se pudo encontrar", "Fallo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                
             }
-               
+               if(paso)
+               {
+                    MessageBox.Show("Guardado", "Exito", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-            if (paso)
-                MessageBox.Show("Guardado", "Exito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            else
+               }
+              else
+              {
                 MessageBox.Show("No se pudo guardar", "Fallo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+              }
         }
 
         private void Eliminarbutton_Click(object sender, EventArgs e)
@@ -87,9 +98,15 @@ namespace SegundoParcial.UI.Registro
             int id = Convert.ToInt32(ArticuloIDNumericUpDown.Value);
 
             if (BLL.ArticulosBLL.Eliminar(id))
+            {
                 MessageBox.Show("Eliminado", "Exito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+            }
             else
-                MessageBox.Show("no se pudo guardar", "Fallo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            {
+                MessageBox.Show("no se pudo Eliminar", "Fallo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+            }
         }
 
         private Articulos LlenarClase()
@@ -98,9 +115,9 @@ namespace SegundoParcial.UI.Registro
 
             articulos.ArticuloId = Convert.ToInt32(ArticuloIDNumericUpDown.Value);
             articulos.Descripcion = DescripcionTextBox.Text;
-            articulos.Costo = Convert.ToInt32(CostoNumericUpDown.Value);
-            articulos.Precio = Convert.ToInt32(PrecioNumericUpDown.Value);
-            articulos.Ganancia = Convert.ToInt32(GananciaTextBox.Text);
+            articulos.Costo = Convert.ToDecimal(CostoNumericUpDown.Value);
+            articulos.Precio = Convert.ToDecimal(PrecioNumericUpDown.Value);
+            articulos.Ganancia = Convert.ToDecimal(GananciaTextBox.Text);
             articulos.Inventario = Convert.ToInt32(InventarioNumericUpDown.Value);
 
             return articulos;
@@ -128,5 +145,20 @@ namespace SegundoParcial.UI.Registro
 
             }
         }
+
+        private void GananciaTextBox_TextChanged(object sender, EventArgs e)
+        {
+            //decimal costo = Convert.ToDecimal(CostoNumericUpDown.Value);
+            //decimal precio = Convert.ToDecimal(PrecioNumericUpDown.Value);
+            //decimal ganancia = Convert.ToDecimal(GananciaTextBox.Text);
+
+            //if (CostoNumericUpDown.Value != 0 && Convert.ToInt32(GananciaTextBox.Text))
+            //{
+            //    PrecioNumericUpDown.Value = BLL.ArticulosBLL.CalcularPrecio(costo, ganancia);
+            //    return;
+            //}
+        }
+
+
     }
 }

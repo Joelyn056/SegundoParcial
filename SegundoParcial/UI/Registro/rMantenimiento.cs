@@ -15,112 +15,95 @@ namespace SegundoParcial.UI.Registro
 {
     public partial class rMantenimiento : Form
     {
-
+        public Mantenimiento mantenimiento { get; set; } 
         public rMantenimiento()
         {
             InitializeComponent();
             LlenaComboBox();
+            Fecha();
+            mantenimiento = new Mantenimiento();
         }
+
+        private void Fecha()
+        {
+            ProximodaMantenimientoTimePicker.Value = FechaDateTimePicker.Value.AddMonths(3);
+        }
+
+        private void LlenaCampo(Mantenimiento mantenimiento)
+        {
+            MantenimientoIdNumericUpDown.Value = mantenimiento.MantenimientoId;
+            FechaDateTimePicker.Value = mantenimiento.Fecha;
+            ProximodaMantenimientoTimePicker.Value = mantenimiento.ProxiMantenimiento;
+            //VehiculoComboBox.Text = mantenimiento.Vehiculo;
+            //ArticuloComboBox.Text = mantenimiento.ToString();
+            //CantidadNumericUpDown.Value = mantenimiento.Cantidad;
+            //PrecioNumericUpDown.Value = mantenimiento.Precio;
+            //ImporteNumericUpDown.Value = mantenimiento.Importe;
+            SubTotalNumericUpDown.Value = Convert.ToInt32(mantenimiento.Subtotal);
+            ITBISNumericUpDown.Value = Convert.ToInt32(mantenimiento.Itbis);
+            TotalnumericUpDown.Value = Convert.ToInt32(mantenimiento.Total);
+
+            DetalledataGridView.DataSource = mantenimiento.Detalle.ToList();
+
+            DetalledataGridView.Columns["Id"].Visible = false;
+            DetalledataGridView.Columns["MantenimientoId"].Visible = false;
+
+        }
+
 
         private void BuscarButton_Click(object sender, EventArgs e)
         {
             GeneralErrorProvider.Clear();
 
-            if (Validar())
-            {
-                MessageBox.Show("Ingrese un ID");
-                return;
-            }
+            //if (Validar())
+            //{
+            //    MessageBox.Show("Ingrese un ID");
+            //    return;
+            //
 
             int id = Convert.ToInt32(MantenimientoIdNumericUpDown.Value);
             Mantenimiento mantenimiento = BLL.MantenimientoBLL.Buscar(id);
 
             if (mantenimiento != null)
             {
-                MantenimientoIdNumericUpDown.Value = mantenimiento.MantenimientoId;
-                //VehiculoComboBox.Text = mantenimiento.Vehiculo;
-                TallerComboBox.Text = mantenimiento.Taller.ToString();
+                LlenaCampo(mantenimiento);
+
+                //MantenimientoIdNumericUpDown.Value = mantenimiento.MantenimientoId;
+                //TallerComboBox.Text = mantenimiento.Taller.ToString();
             }
             else
                 MessageBox.Show("No se encontro", "Fallo", MessageBoxButtons.OK, MessageBoxIcon.Error);
-        }
-
-        private void Nuevobutton_Click(object sender, EventArgs e)
-        {
-            MantenimientoIdNumericUpDown.Value = 0;
-            FechaDateTimePicker.ResetText();
-            CantidadNumericUpDown.Value = 0;
-            ImporteNumericUpDown.Value = 0;
-            SubTotalNumericUpDown.Value = 0;
-            ITBISNumericUpDown.Value = 0;
-            TotalnumericUpDown.Value = 0;
-            DetalledataGridView.DataSource = null;
-            GeneralErrorProvider.Clear();
-
-        }
-
-        private void Guardarbutton_Click(object sender, EventArgs e)
-        {
-            bool paso = false;
-            if(Validar())
-            //{
-            //    MessageBox.Show("llenar los campos");
-
-            //}
-
-            GeneralErrorProvider.Clear();
-
-            if (MantenimientoIdNumericUpDown.Value == 0)
-                paso = BLL.MantenimientoBLL.Guardar(LlenarClase());
-            else
-                paso = BLL.MantenimientoBLL.Modificar(LlenarClase());
-
-            if (paso)
-                MessageBox.Show("Guardado", "Fallo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            else
-                MessageBox.Show("no se pudo guardar", "Fallo", MessageBoxButtons.OK, MessageBoxIcon.Error);
-        }
-
-        private void Eliminarbutton_Click(object sender, EventArgs e)
-        {
-            GeneralErrorProvider.Clear();
-
-            if(Validar())
-            {
-                MessageBox.Show("ingrese el mantenimiento Id");
-                return;
-            }
-
-            int id = Convert.ToInt32(MantenimientoIdNumericUpDown.Value);
-
-            if (BLL.MantenimientoBLL.Eliminar(id))
-                MessageBox.Show("Eliminado", "Fallo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            else
-                MessageBox.Show("no se pudo guardar", "Fallo", MessageBoxButtons.OK, MessageBoxIcon.Error);
-        }
+        }   
 
         private Mantenimiento LlenarClase()
         {
             Mantenimiento mantenimiento = new Mantenimiento();
 
             mantenimiento.MantenimientoId = Convert.ToInt32(MantenimientoIdNumericUpDown.Value);
-            mantenimiento.VehiculoId =int.Parse(VehiculoComboBox.Text);
-            mantenimiento.Taller = int.Parse(TallerComboBox.Text);
+            mantenimiento.Fecha = FechaDateTimePicker.Value;
+            mantenimiento.ProxiMantenimiento = ProximodaMantenimientoTimePicker.Value;
+            mantenimiento.Total = Convert.ToDecimal(TotalnumericUpDown.Value);
+            mantenimiento.Subtotal = Convert.ToDecimal(SubTotalNumericUpDown.Value);
+            mantenimiento.Itbis = Convert.ToDecimal(ITBISNumericUpDown.Value);
 
-            foreach (DataGridViewRow item in DetalledataGridView.Rows)
-            {
-                mantenimiento.AgregarDetalle(
-                    ToInt(item.Cells["Id"].Value),
-                    ToInt(item.Cells["MantenimientoId"]),
-                    (item.Cells["Vehiculo"].Value.ToString()),
-                    (DateTime)(item.Cells["ProximoMantenimiento"].Value),
-                    ToInt(item.Cells["Taller"].Value),
-                    ToInt(item.Cells["Cantidad"].Value),
-                    ToInt(item.Cells["Precio"].Value),
-                    ToInt(item.Cells["Importe"].Value)
-                    );
+            //mantenimiento.VehiculoId = Convert.ToInt32(VehiculoComboBox.SelectedValue);
+            //mantenimiento.Taller = Convert.ToInt32(TallerComboBox.SelectedValue);
 
-            }
+
+
+            //foreach (DataGridViewRow item in DetalledataGridView.Rows)
+            //{
+            //    mantenimiento.AgregarDetalle(
+            //        ToInt(item.Cells["Id"].Value),
+            //        ToInt(item.Cells["MantenimientoId"]),
+            //       ToInt(item.Cells["VehiculoId"].Value),
+            //        ToInt(item.Cells["Taller"].Value),
+            //        ToInt(item.Cells["Subtotal"].Value),
+            //        ToInt(item.Cells["Itbis"].Value),
+            //        ToInt(item.Cells["Total"].Value)
+            //        );
+
+            //}
 
             return mantenimiento;
         }
@@ -159,36 +142,78 @@ namespace SegundoParcial.UI.Registro
         
         private void AgregarButton_Click(object sender, EventArgs e)
         {
-            List<MantenimientoD> mantenimientos = new List<MantenimientoD>();
+            //List<MantenimientoD> Detalle = new List<MantenimientoD>();
+            //Mantenimiento mantenimiento = new Mantenimiento();
 
-            if(DetalledataGridView.DataSource != null)
-            {
-                mantenimientos = (List<MantenimientoD>)DetalledataGridView.DataSource;
-            }
+            //if(DetalledataGridView.DataSource != null)
+            //{
+            //    mantenimiento.Detalle = (List<MantenimientoD>)DetalledataGridView.DataSource;
+            //}
 
-            mantenimientos.Add(new MantenimientoD(
+
+            //mantenimientoD.Detalle.Add(new MantenimientoD(
+            MantenimientoD detalle = new MantenimientoD(
 
                 id: 0,
                 mantenimientoId: (int)MantenimientoIdNumericUpDown.Value,
-                vehiculoId: (int)VehiculoComboBox.SelectedValue,
-                precio: (int)PrecioNumericUpDown.Value,
-                importe: (int)ImporteNumericUpDown.Value,
                 articuloId: (int)ArticuloComboBox.SelectedValue,
-                cantidad: (int)CantidadNumericUpDown.Value,
-                subTotal: (int)SubTotalNumericUpDown.Value,
                 tallerId: (int)TallerComboBox.SelectedValue,
-                itbis: (int)ITBISNumericUpDown.Value,
-                total: (int) TotalnumericUpDown.Value
-
-            ));
+                vehiculoId:(int)VehiculoComboBox.SelectedValue,
+                articulo: ArticuloComboBox.Text,
+                //vehiculo: (int)VehiculoComboBox.SelectedValue,
+                //taller: (int)TallerComboBox.SelectedValue,
+                cantidad: (int)CantidadNumericUpDown.Value,
+                precio: (int)PrecioNumericUpDown.Value,
+                importe: (int)ImporteNumericUpDown.Value
+               
+            );
+            AgregarDetalle(
+                detalle
+                );
 
 
             DetalledataGridView.DataSource = null;
-            DetalledataGridView.DataSource = mantenimientos;
-            CalcularSubtotal();
-            CalcularItbis();
-            CalcularTotal();
+            DetalledataGridView.DataSource = mantenimiento.Detalle;
 
+            DetalledataGridView.Columns["id"].Visible = false;
+            DetalledataGridView.Columns["mantenimientoId"].Visible = false;
+            DetalledataGridView.Columns["tallerId"].Visible = false;
+
+
+            Total();
+
+        }
+
+        private void Total()
+        {
+            List<MantenimientoD> detalle = (List<MantenimientoD>)DetalledataGridView.DataSource;
+
+            decimal Total= 0;
+            decimal ItB;
+            ItB = 0.18M;
+
+            foreach(var item in detalle)
+            {
+                Total += item.Importe;
+            }
+
+            //TotalnumericUpDown.Value;
+        }
+
+        private void AgregarDetalle(MantenimientoD mantenimientoD)
+        {
+            foreach (var item in mantenimiento.Detalle)
+            {
+                if (item.ArticuloId== mantenimientoD.ArticuloId)
+                {
+                    item.Cantidad += mantenimientoD.Cantidad;
+                    item.Importe = item.Precio * item.Cantidad;
+                    return;
+                }
+
+            }
+
+            mantenimiento.Detalle.Add(mantenimientoD);
 
         }
 
@@ -211,34 +236,11 @@ namespace SegundoParcial.UI.Registro
             VehiculoComboBox.DisplayMember = "Descripcion";
              
 
-        }
-
-
-
-        private void LlenaCampo(MantenimientoD mantenimiento)
-        {
-            MantenimientoIdNumericUpDown.Value = mantenimiento.MantenimientoId;
-            FechaDateTimePicker.Value = mantenimiento.Fecha;
-            ProximodaMantenimientoTimePicker.Value = mantenimiento.ProxiMantenimiento;
-            VehiculoComboBox.Text = mantenimiento.Vehiculo;
-            ArticuloComboBox.Text = mantenimiento.ToString();
-            CantidadNumericUpDown.Value = mantenimiento.Cantidad;
-            PrecioNumericUpDown.Value = mantenimiento.Precio;
-            ImporteNumericUpDown.Value = mantenimiento.Importe;
-            SubTotalNumericUpDown.Value = mantenimiento.SubTotal;
-            ITBISNumericUpDown.Value = mantenimiento.Itbis;
-            TotalnumericUpDown.Value = mantenimiento.Total;
-
-            DetalledataGridView.DataSource = mantenimiento;
-
-            DetalledataGridView.Columns["id"].Visible = false;
-            DetalledataGridView.Columns["MantenimientoI"].Visible = false;
-
-        }
+        }      
 
         private void ArticuloComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //Repositorio<Articulos> precio = new Repositorio<Articulos>(new Contexto());
+            
             Articulos articulos = (Articulos)ArticuloComboBox.SelectedItem;
             PrecioNumericUpDown.Value = Convert.ToDecimal(articulos.Precio);
         }
@@ -246,6 +248,9 @@ namespace SegundoParcial.UI.Registro
         private void CantidadNumericUpDown_ValueChanged(object sender, EventArgs e)
         {
             CalcularImporte();
+            CalcularSubtotal();
+            CalcularItbis();
+            CalcularTotal();
         }
 
 
@@ -275,9 +280,100 @@ namespace SegundoParcial.UI.Registro
             }
         }
 
-        private void FechaDateTimePicker_ValueChanged(object sender, EventArgs e)
+        private void RemoverButton_Click(object sender, EventArgs e)
         {
-            ProximodaMantenimientoTimePicker.Value = FechaDateTimePicker.Value.AddMonths(3);
+            if(DetalledataGridView.Rows.Count > 0 && DetalledataGridView.CurrentRow != null)
+            {
+                List<MantenimientoD> Detalle = (List<MantenimientoD>)DetalledataGridView.DataSource;
+
+                Detalle.RemoveAt(DetalledataGridView.CurrentRow.Index);
+
+                DetalledataGridView.DataSource = null;
+                DetalledataGridView.DataSource = Detalle;
+            }
+        }
+
+
+        private void Nuevobutton_Click(object sender, EventArgs e)
+        {
+            MantenimientoIdNumericUpDown.Value = 0;
+            FechaDateTimePicker.Value = DateTime.Now;
+            CantidadNumericUpDown.Value = 0;
+            PrecioNumericUpDown.Value = 0;
+            ImporteNumericUpDown.Value = 0;
+            TotalnumericUpDown.Value = 0;
+            DetalledataGridView.DataSource = null;
+            SubTotalNumericUpDown.Value = 0;
+            ITBISNumericUpDown.Value = 0;
+            GeneralErrorProvider.Clear();
+            mantenimiento.Detalle.Clear();
+
+        }
+
+        private void Guardarbutton_Click(object sender, EventArgs e)
+        {
+            Mantenimiento mantenimiento;
+            bool paso = false;
+            if (Validar())
+            {
+                MessageBox.Show("Favor revisar todos los campos", "Validar", MessageBoxButtons.OK, 
+                    MessageBoxIcon.Error);
+                return;
+
+            }
+
+            mantenimiento = LlenarClase();
+
+            if (MantenimientoIdNumericUpDown.Value == 0)
+            {
+                mantenimiento = LlenarClase();
+                paso = BLL.MantenimientoBLL.Guardar(mantenimiento);
+             
+            }
+            else
+            {
+                mantenimiento = LlenarClase();
+                paso = BLL.MantenimientoBLL.Modificar(mantenimiento);
+               
+            }
+            if (paso)
+            {
+                Nuevobutton.PerformClick();
+                MessageBox.Show("Guardado!!", "Exito",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+            }
+            else
+                MessageBox.Show("No se pudo guardar!!", "Fallo",
+                   MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+            GeneralErrorProvider.Clear();           
+        }
+
+        //private void FechaDateTimePicker_ValueChanged(object sender, EventArgs e)
+        //{
+        //    ProximodaMantenimientoTimePicker.Value = FechaDateTimePicker.Value.AddMonths(3);
+        //}
+
+        private void Eliminarbutton_Click(object sender, EventArgs e)
+        {
+            int id = Convert.ToInt32(MantenimientoIdNumericUpDown.Value);
+
+            if(BLL.MantenimientoBLL.Eliminar(id))
+            {
+                MessageBox.Show("Eliminado!!", "Exito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+                MessageBox.Show("No se pudo eliminar!!", "Fallo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+            GeneralErrorProvider.Clear();
+
+            //if (Validar())
+            //{
+            //    MessageBox.Show("agregar ariticulos al Grid", "Validar", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //    return;
+            //}
+
         }
     }
 }
